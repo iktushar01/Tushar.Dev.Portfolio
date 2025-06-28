@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <div className="bg-black">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between bg-black text-white border-b border-red-600">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between bg-black">
         <div className="flex items-center gap-3">
           {/* Logo */}
           <div className="flex items-center gap-2">
@@ -36,7 +36,7 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <motion.nav
-          className="hidden md:flex gap-1 px-2 py-1 rounded-full bg-black border border-gray-800"
+          className="hidden md:flex gap-1 px-2 py-1 rounded-full bg-black border border-gray-200"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -91,7 +91,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-70 z-40 md:hidden"
+              className="fixed inset-0 bg-black/50 z-40 md:hidden"
               onClick={closeMenu}
             />
             
@@ -100,7 +100,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 w-64 h-full bg-black z-50 shadow-2xl md:hidden border-l border-red-600"
+              className="fixed top-0 right-0 w-64 h-full bg-black z-50 shadow-2xl md:hidden border-l border-red-600/50"
             >
               <div className="p-4 flex justify-between items-center border-b border-gray-800">
                 <div className="flex items-center gap-2">
