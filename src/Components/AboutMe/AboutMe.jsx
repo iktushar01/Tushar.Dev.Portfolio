@@ -33,7 +33,7 @@ const AboutMe = () => {
                   transform: `translateY(${y}px)`,
                 }}
               >
-                <span className="border-b-2 border-red-600 pb-2">About Me</span>
+                <span className=" pb-2">About Me</span>
               </h2>
             )}
           </Motion>
