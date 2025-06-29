@@ -54,6 +54,7 @@ const Header = () => {
 
   return (
     <motion.header 
+      id="home"
       initial="hidden"
       animate={inView ? "show" : "hidden"}
       className="bg-black text-white flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 py-12 md:py-16 relative overflow-hidden"

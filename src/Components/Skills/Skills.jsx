@@ -74,6 +74,7 @@ const Skills = () => {
 
   const SkillItem = ({ skill }) => (
     <motion.div 
+    id='skills'
       whileHover={{ scale: 1.05 }}
       className={`flex flex-col items-center justify-center p-4 m-2 rounded-lg ${getColorClass(skill.category)} min-w-[120px] h-[120px] backdrop-blur-sm`}
     >

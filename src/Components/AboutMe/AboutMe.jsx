@@ -14,7 +14,7 @@ const AboutMe = () => {
   const [skillsRef, skillsInView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section className="bg-black text-white py-16 px-4 sm:px-8 relative overflow-hidden">
+    <section id="about" className="bg-black text-white py-16 px-4 sm:px-8 relative overflow-hidden">
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Animated Title */}
         <div ref={titleRef}>

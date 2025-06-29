@@ -1,181 +1,220 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaHome, 
-  FaBoxOpen, 
-  FaUser, 
-  FaTimes, 
+import {
+  FaHome,
+  FaBoxOpen,
+  FaUser,
+  FaTimes,
   FaBars,
   FaCode,
   FaGraduationCap,
+  FaEnvelope
 } from "react-icons/fa";
-
-// Import your images properly (make sure these paths are correct)
 import Logo from "../../assets/logo.png";
+
+function debounce(func, wait) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
+  const [activeItem, setActiveItem] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const navbarRef = useRef(null);
+
   const navItems = [
-    { icon: <FaHome />, label: "Home" },
-    { icon: <FaUser />, label: "About" },
-    { icon: <FaCode />, label: "Skills" },
-    { icon: <FaGraduationCap />, label: "Education" },
-    { icon: <FaBoxOpen />, label: "Projects" },
-   
+    { icon: <FaHome size={16} />, label: "Home", id: "home" },
+    { icon: <FaUser size={16} />, label: "About", id: "about" },
+    { icon: <FaCode size={16} />, label: "Skills", id: "skills" },
+    { icon: <FaGraduationCap size={16} />, label: "Education", id: "education" },
+    { icon: <FaBoxOpen size={16} />, label: "Projects", id: "projects" },
   ];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const contactItem = { icon: <FaEnvelope size={16} />, label: "Contact", id: "contact" };
 
-  // Hamburger icon variants for animation
-  const hamburgerVariants = {
-    open: { rotate: 90, scale: 1.1 },
-    closed: { rotate: 0, scale: 1 }
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      // No navbar height offset for mobile
+      const offsetPosition = element.offsetTop;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      
+      setActiveItem(id);
+      setIsOpen(false);
+    }
   };
 
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      setScrolled(window.scrollY > 10);
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px 0px 0px', // No offset for mobile
+        threshold: 0.3
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveItem(entry.target.id);
+          }
+        });
+      }, observerOptions);
+
+      [...navItems, contactItem].forEach(item => {
+        const section = document.getElementById(item.id);
+        if (section) observer.observe(section);
+      });
+
+      return () => {
+        [...navItems, contactItem].forEach(item => {
+          const section = document.getElementById(item.id);
+          if (section) observer.unobserve(section);
+        });
+      };
+    }, 100);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
+
   return (
-    <div className="bg-black sticky top-0 z-50 w-full border-b border-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between bg-black">
-        {/* Logo Section */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
+    <div 
+      ref={navbarRef}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-gray-900/95 backdrop-blur-md border-b border-gray-800 shadow-lg" 
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14"> {/* Adjusted height */}
+          {/* Logo - Left */}
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center"
+          >
             <img
               src={Logo}
               alt="Logo"
-              className="h-8 sm:h-10 object-contain"
+              className="h-8 w-auto cursor-pointer" // Adjusted logo size
+              onClick={() => scrollToSection("home")}
             />
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Desktop Navigation */}
-        <motion.nav
-          className="hidden md:flex gap-1 px-2 py-1 rounded-full bg-black border border-gray-200/20"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          {navItems.map((item, index) => (
+          {/* Desktop Navigation - Center */}
+          <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
+            <div className="flex space-x-2"> {/* Increased space between items */}
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  whileHover={{ 
+                    y: -2,
+                    color: "#ffffff"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all ${
+                    activeItem === item.id
+                      ? "text-white bg-red-600/90 shadow-md"
+                      : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+                  }`} // Increased padding and font size
+                  onClick={() => scrollToSection(item.id)}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </nav>
+
+          {/* Contact Button - Right */}
+          <div className="hidden md:flex items-center">
             <motion.button
-              key={index}
               whileHover={{ 
-                backgroundColor: "#1a1a1a",
+                y: -2,
                 color: "#ffffff"
               }}
               whileTap={{ scale: 0.95 }}
-              className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${
-                activeItem === item.label 
-                  ? "bg-red-600 text-white" 
-                  : "text-gray-300 hover:text-white"
-              }`}
-              title={item.label}
-              onClick={() => setActiveItem(item.label)}
+              className={`px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all bg-red-600 ${
+                activeItem === contactItem.id
+                  ? "text-white bg-red-600/90 shadow-md"
+                  : "text-gray-100 hover:text-white hover:bg-gray-800/50"
+              }`} // Increased padding and font size
+              onClick={() => scrollToSection(contactItem.id)}
             >
-              <div className="flex items-center gap-2">
-                <span className="text-sm sm:text-base">{item.icon}</span>
-                <span>{item.label}</span>
-              </div>
+              {contactItem.icon}
+              <span>{contactItem.label}</span>
             </motion.button>
-          ))}
-        </motion.nav>
+          </div>
 
-        {/* Contact Button and Mobile Menu */}
-        <div className="flex items-center gap-4">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="hidden md:block bg-red-600 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-red-700 transition-all text-sm font-medium"
-          >
-            Contact
-          </motion.button>
-          
-          {/* Enhanced Hamburger Button */}
-          <motion.button
-            onClick={toggleMenu}
-            className="md:hidden text-xl focus:outline-none p-2 rounded-full bg-gray-800 text-gray-300 hover:text-white hover:bg-gray-700"
-            initial="closed"
-            animate={isOpen ? "open" : "closed"}
-            variants={hamburgerVariants}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </motion.button>
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+              aria-label="Main menu"
+              whileTap={{ scale: 0.9 }}
+            >
+              {isOpen ? (
+                <FaTimes className="block h-5 w-5" /> // Adjusted icon size
+              ) : (
+                <FaBars className="block h-5 w-5" /> // Adjusted icon size
+              )}
+            </motion.button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden"
-              onClick={closeMenu}
-            />
-            
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 w-72 h-full bg-gray-900 z-50 shadow-2xl md:hidden border-l border-red-600/30 flex flex-col"
-            >
-              <div className="p-4 flex justify-between items-center border-b border-gray-800">
-                <div className="flex items-center gap-2">
-                  <img
-                    src={Logo}
-                    alt="Logo"
-                    className="h-8 object-contain"
-                  />
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800"
+          >
+            <div className="px-3 pt-2 pb-4 space-y-2"> {/* Increased padding and spacing */}
+              {[...navItems, contactItem].map((item) => (
                 <motion.button
-                  onClick={closeMenu}
-                  className="text-xl text-gray-200 hover:text-white p-2"
-                  whileHover={{ rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <FaTimes />
-                </motion.button>
-              </div>
-              
-              <div className="flex flex-col gap-1 p-4 overflow-y-auto flex-grow">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={index}
-                    whileHover={{ 
-                      backgroundColor: "#1a1a1a",
-                      x: 5
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`flex items-center gap-4 px-4 py-3 rounded-lg text-gray-300 hover:text-white transition-all ${
-                      activeItem === item.label ? "bg-red-600 text-white" : ""
-                    }`}
-                    onClick={() => {
-                      setActiveItem(item.label);
-                      closeMenu();
-                    }}
-                  >
-                    <span className="text-lg">{item.icon}</span>
-                    <span className="text-sm font-medium">{item.label}</span>
-                  </motion.button>
-                ))}
-              </div>
-              
-              <div className="p-4 border-t border-gray-800">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
+                  key={item.id}
+                  whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-red-600 text-white px-4 py-3 rounded-lg hover:bg-red-700 transition-all text-sm font-medium"
-                  onClick={closeMenu}
+                  className={`w-full flex items-center px-4 py-3 rounded-md text-base font-medium ${
+                    activeItem === item.id
+                      ? "bg-red-600 text-white"
+                      : "text-gray-300 hover:text-white hover:bg-gray-800"
+                  }`} // Increased padding and font size
+                  onClick={() => scrollToSection(item.id)}
                 >
-                  Contact Us
+                  <span className="mr-3">{item.icon}</span> {/* Increased icon margin */}
+                  {item.label}
                 </motion.button>
-              </div>
-            </motion.div>
-          </>
+              ))}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
