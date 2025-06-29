@@ -7,8 +7,42 @@ import {
   FiX,
   FiChevronLeft,
   FiChevronRight,
+  FiEye,
 } from "react-icons/fi";
-import project1Img from "../../assets/projectMarathon.png";
+
+import projectOneImgOne from "../../assets/ProjectOne/one.png";
+import projectOneImgTwo from "../../assets/ProjectOne/two.png";
+import projectOneImgThree from "../../assets/ProjectOne/three.png";
+import projectOneImgFour from "../../assets/ProjectOne/four.png";
+import projectOneImgFive from "../../assets/ProjectOne/five.png";
+
+import projectTwoImgOne from "../../assets/ProjectTwo/one.png";
+import projectTwoImgTwo from "../../assets/ProjectTwo/two.png";
+import projectTwoImgThree from "../../assets/ProjectTwo/three.png";
+import projectTwoImgFour from "../../assets/ProjectTwo/four.png";
+import projectTwoImgFive from "../../assets/ProjectTwo/five.png";
+
+import projectThreeImgOne from "../../assets/ProjectThree/one.png";
+import projectThreeImgTwo from "../../assets/ProjectThree/two.png";
+import projectThreeImgThree from "../../assets/ProjectThree/three.png";
+import projectThreeImgFour from "../../assets/ProjectThree/four.png";
+import projectThreeImgFive from "../../assets/ProjectThree/five.png";
+
+// Technology color mapping
+const techColors = {
+  "React.js": "bg-blue-500 text-white",
+  "React": "bg-blue-500 text-white",
+  "Node.js": "bg-green-600 text-white",
+  "Express.js": "bg-gray-500 text-white",
+  "Express": "bg-gray-500 text-white",
+  "MongoDB": "bg-green-700 text-white",
+  "Firebase": "bg-yellow-500 text-black",
+  "Tailwind CSS": "bg-cyan-500 text-white",
+  "TailwindCSS": "bg-cyan-500 text-white",
+  "Firebase Auth": "bg-orange-500 text-white",
+  "DaisyUI": "bg-purple-500 text-white",
+  "React Router": "bg-red-500 text-white",
+};
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -21,62 +55,102 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      images: [project1Img],
+      title: "Marathon Management System",
+      images: [
+        projectOneImgOne,
+        projectOneImgTwo,
+        projectOneImgThree,
+        projectOneImgFour,
+        projectOneImgFive,
+      ],
       description:
-        "A full-featured e-commerce platform with product listings, cart functionality, and secure checkout.",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Redux"],
-      liveLink: "https://ecommerce-demo.com",
-      githubLink: "https://github.com/username/ecommerce",
+        "A full-stack web application designed to streamline the organization and participation of marathon events. Users can create marathons, register for events, and manage everything through a user-friendly dashboard.",
+      technologies: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Firebase",
+        "Tailwind CSS",
+      ],
+      liveLink: "https://stridez-b25a1.web.app/",
+      githubLink: "https://github.com/username/marathon-management-system",
       challenges: [
-        "Implementing secure payment gateway integration",
-        "Managing complex state with multiple product variants",
-        "Optimizing performance for large product catalogs",
+        "Implementing secure JWT-based authentication with Firebase and server verification",
+        "Managing user roles and protecting routes with role-based access",
+        "Integrating real-time countdown timers and dynamic search/sort functionality",
       ],
       improvements: [
-        "Add product recommendation engine",
-        "Implement AR product preview",
-        "Expand mobile app version",
+        "Add admin analytics dashboard for event insights",
+        "Integrate payment system for paid registrations",
+        "Introduce push notifications and email confirmations",
       ],
     },
     {
       id: 2,
-      title: "Task Management App",
-      images: [project1Img],
+      title: "Recipe Book",
+      images: [
+        projectTwoImgFour,
+        projectTwoImgOne,
+        projectTwoImgTwo,
+        projectTwoImgThree,
+        projectTwoImgFive,
+      ],
       description:
-        "A collaborative task management application with real-time updates and team features.",
-      technologies: ["React", "Firebase", "Material UI", "React DnD"],
-      liveLink: "https://taskmanager-demo.com",
-      githubLink: "https://github.com/username/taskmanager",
+        "A feature-rich recipe sharing platform where users can create, explore, and manage personalized recipes. Includes filtering, top recipes, and protected user routes.",
+      technologies: [
+        "React.js",
+        "Firebase Auth",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "TailwindCSS",
+        "DaisyUI",
+      ],
+      liveLink: "https://recipebook99.netlify.app/",
+      githubLink: "https://github.com/username/recipebook-client",
       challenges: [
-        "Real-time synchronization across multiple users",
-        "Drag-and-drop interface implementation",
-        "Offline functionality with sync when online",
+        "Building role-based access control for private routes",
+        "Creating dynamic filtering by cuisine type",
+        "Managing user-generated content securely with MongoDB",
       ],
       improvements: [
-        "Add calendar view integration",
-        "Implement AI-powered task suggestions",
-        "Add time tracking features",
+        "Add recipe rating and comment system",
+        "Enable image upload for recipes",
+        "Implement advanced search with tags and keywords",
       ],
     },
     {
       id: 3,
-      title: "Health & Fitness Tracker",
-      images: [project1Img],
+      title: "ThandaSurprise 🎁",
+      images: [
+        projectThreeImgOne,
+        projectThreeImgTwo,
+        projectThreeImgThree,
+        projectThreeImgFour,
+        projectThreeImgFive,
+      ],
       description:
-        "Comprehensive fitness tracking application with workout plans and nutrition logging.",
-      technologies: ["React Native", "GraphQL", "Apollo", "MongoDB"],
-      liveLink: "https://fitness-tracker-demo.com",
-      githubLink: "https://github.com/username/fitness-tracker",
+        "ThandaSurprise is a personalized subscription box service platform offering users a curated monthly experience tailored to their preferences. The app supports local businesses and provides a secure, responsive, and user-friendly interface.",
+      technologies: [
+        "React",
+        "Firebase",
+        "Node.js",
+        "Express",
+        "TailwindCSS",
+        "React Router",
+      ],
+      liveLink: "https://thandasurprise.netlify.app/",
+      githubLink: "https://github.com/username/thandasurprise-client",
       challenges: [
-        "Handling complex data relationships for nutrition tracking",
-        "Implementing smooth animations in React Native",
-        "Optimizing for both iOS and Android platforms",
+        "Handling secure authentication with persistent user sessions",
+        "Dynamically displaying subscription details from hosted JSON data",
+        "Integrating rating and review system with real-time display",
       ],
       improvements: [
-        "Add social features and challenges",
-        "Integrate with wearable devices",
-        "Implement machine learning for personalized recommendations",
+        "Add admin panel for managing subscription boxes",
+        "Integrate payment gateway for real subscriptions",
+        "Introduce personalized box suggestions based on user behavior",
       ],
     },
   ];
@@ -102,6 +176,10 @@ const Projects = () => {
     setCurrentImageIndex((prev) =>
       prev === 0 ? selectedProject.images.length - 1 : prev - 1
     );
+  };
+
+  const getTechColor = (tech) => {
+    return techColors[tech] || "bg-gray-700 text-white"; // Default color if not found
   };
 
   return (
@@ -147,7 +225,7 @@ const Projects = () => {
                     {project.technologies.slice(0, 4).map((tech, i) => (
                       <span
                         key={i}
-                        className="px-2 py-1 bg-gray-700 rounded-full text-xs"
+                        className={`px-2 py-1 rounded-full text-xs ${getTechColor(tech)}`}
                       >
                         {tech}
                       </span>
@@ -159,12 +237,33 @@ const Projects = () => {
                     )}
                   </div>
                 </div>
-                <button
-                  onClick={() => openModal(project)}
-                  className="w-full py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-300"
-                >
-                  View Details
-                </button>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center px-2 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-300 text-sm"
+                  >
+                    <FiExternalLink className="mr-1" />
+                    Live
+                  </a>
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center px-2 py-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors duration-300 text-sm"
+                  >
+                    <FiGithub className="mr-1" />
+                    GitHub
+                  </a>
+                  <button
+                    onClick={() => openModal(project)}
+                    className="flex-1 flex items-center justify-center py-2 bg-gray-900 hover:bg-gray-700 rounded-md transition-colors duration-300 text-sm"
+                  >
+                    <FiEye className="mr-1" />
+                    Details
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -173,7 +272,7 @@ const Projects = () => {
 
       {/* Project Details Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-90">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70">
           <div className="relative bg-gray-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
             <button
               onClick={closeModal}
@@ -246,7 +345,7 @@ const Projects = () => {
                     {selectedProject.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 bg-gray-700 rounded-full text-sm"
+                        className={`px-3 py-1 rounded-full text-sm ${getTechColor(tech)}`}
                       >
                         {tech}
                       </span>
