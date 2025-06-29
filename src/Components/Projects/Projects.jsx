@@ -120,26 +120,26 @@ const Projects = () => {
           My Projects
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row"
             >
-              <div className="h-48 overflow-hidden relative">
+              <div className="md:w-1/2 h-48 md:h-auto overflow-hidden relative">
                 <img
                   src={project.images[0]}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover p-3"
                 />
                 <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-xs">
                   {project.images.length} images
                 </div>
               </div>
-              <div className="p-6 flex-grow flex flex-col">
+              <div className="md:w-1/2 p-6 flex-grow flex flex-col">
                 <div className="flex-grow">
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-300 mb-4">{project.description}</p>
