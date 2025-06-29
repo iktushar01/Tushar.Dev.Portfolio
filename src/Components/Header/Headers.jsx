@@ -59,7 +59,7 @@ const Header = () => {
       className="bg-black text-white flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 py-12 md:py-16 relative overflow-hidden"
     >
       {/* Content container */}
-      <div className="container mx-auto flex flex-col md:flex-row-reverse items-center justify-between gap-0 lg:gap-12 xl:gap-16 z-10">
+      <div className="container max-w-6xl  mx-auto flex flex-col md:flex-row-reverse items-center justify-between gap-0 lg:gap-12 xl:gap-16 z-10">
         {/* Text content */}
         <motion.div 
           ref={ref}

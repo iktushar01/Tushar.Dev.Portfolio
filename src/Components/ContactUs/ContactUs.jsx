@@ -153,9 +153,9 @@ const ContactUs = () => {
 
               <motion.div variants={item} className="flex items-center gap-3">
                 <FaWhatsapp className="text-red-500 text-xl" />
-                <span className="text-gray-300">+880 1234 567890</span>
+                <span className="text-gray-300">+880 1756650014</span>
                 <button 
-                  onClick={() => copyToClipboard('+8801234567890', 'WhatsApp')}
+                  onClick={() => copyToClipboard('+8801756650014', 'WhatsApp')}
                   className="ml-2 text-gray-400 hover:text-white transition-colors"
                   aria-label="Copy WhatsApp number"
                 >
@@ -180,16 +180,17 @@ const ContactUs = () => {
                 className="flex gap-4 mt-6"
               >
                 {[
-                  { icon: <FaGithub />, url: "#", label: "GitHub" },
-                  { icon: <FaLinkedin />, url: "#", label: "LinkedIn" },
-                  { icon: <FaFacebook />, url: "#", label: "Facebook" }
+                  { icon: <FaGithub />, url: "https://github.com/iktushar01", label: "GitHub" },
+                  { icon: <FaLinkedin />, url: "https://www.linkedin.com/in/iktushar01/", label: "LinkedIn" },
+                  { icon: <FaFacebook />, url: "https://www.facebook.com/ibrahim.khalil.tushar.2024", label: "Facebook" }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
                     whileHover={{ y: -3 }}
                     href={social.url}
                     aria-label={social.label}
-                    className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
+                    target="_blank"
+                    className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300  tar"
                   >
                     {social.icon}
                   </motion.a>
