@@ -3,6 +3,7 @@ import Headers from '../../Components/Header/Headers';
 import AboutMe from '../../Components/AboutMe/AboutMe';
 import ContactUs from '../../Components/ContactUs/ContactUs';
 import Skills from '../../Components/Skills/Skills';
+import Education from '../../Components/Education/Education';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <Headers></Headers>
             <AboutMe></AboutMe>
             <Skills></Skills>
+            <Education></Education>
             <ContactUs></ContactUs>
         </div>
     );

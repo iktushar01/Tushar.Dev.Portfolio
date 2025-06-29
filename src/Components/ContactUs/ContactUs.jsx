@@ -1,8 +1,12 @@
 import React from 'react';
-import { FaPaperPlane, FaGithub, FaLinkedin, FaFacebook, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPaperPlane, FaGithub, FaLinkedin, FaFacebook, FaMapMarkerAlt, FaWhatsapp, FaEnvelope, FaCopy } from 'react-icons/fa';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const ContactUs = () => {
   const [ref, inView] = useInView({
@@ -34,6 +38,28 @@ const ContactUs = () => {
     }
   };
 
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text);
+    MySwal.fire({
+      title: <p className="text-white">Copied to clipboard!</p>,
+      text: text,
+      icon: 'success',
+      background: '#1a1a1a',
+      color: '#ffffff',
+      iconColor: '#ef4444',
+      confirmButtonColor: '#ef4444',
+      customClass: {
+        popup: 'dark-swal',
+        title: 'dark-swal-title',
+        content: 'dark-swal-content',
+      },
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      position: 'top-end'
+    });
+  };
+
   return (
     <section id="contact" className="bg-black text-white py-20 px-4 sm:px-8 relative overflow-hidden">
            
@@ -48,7 +74,7 @@ const ContactUs = () => {
           {/* Left Column - Lottie Animation (50%) */}
           <motion.div 
             variants={item}
-            className="w-full lg:w-1/2"
+            className="w-full hidden md:block lg:w-1/2"
           >
             <Player
               autoplay
@@ -128,12 +154,34 @@ const ContactUs = () => {
             >
               <motion.div variants={item} className="flex items-center gap-3">
                 <FaMapMarkerAlt className="text-red-500 text-xl" />
-                <span className="text-gray-300">Based in Dhaka, Bangladesh</span>
+                <span className="text-gray-300">Gazipur, Dhaka, Bangladesh</span>
               </motion.div>
 
-              <motion.p variants={item} className="text-gray-400 text-sm mt-6 mb-3">
-                Prefer direct contact? Email me at: <a href="mailto:you@example.com" className="text-red-400 hover:underline">you@example.com</a>
-              </motion.p>
+              {/* WhatsApp Contact */}
+              <motion.div variants={item} className="flex items-center gap-3">
+                <FaWhatsapp className="text-red-500 text-xl" />
+                <span className="text-gray-300">+880 1234 567890</span>
+                <button 
+                  onClick={() => copyToClipboard('+8801234567890', 'WhatsApp')}
+                  className="ml-2 text-gray-400 hover:text-white transition-colors"
+                  aria-label="Copy WhatsApp number"
+                >
+                  <FaCopy />
+                </button>
+              </motion.div>
+
+              {/* Email Contact */}
+              <motion.div variants={item} className="flex items-center gap-3">
+                <FaEnvelope className="text-red-500 text-xl" />
+                <span className="text-gray-300">ibrahim.khalil.tushar01@gmail.com</span>
+                <button 
+                  onClick={() => copyToClipboard('ibrahim.khalil.tushar01@gmail.com', 'Email')}
+                  className="ml-2 text-gray-400 hover:text-white transition-colors"
+                  aria-label="Copy email address"
+                >
+                  <FaCopy />
+                </button>
+              </motion.div>
 
               {/* Social Links */}
               <motion.div 
