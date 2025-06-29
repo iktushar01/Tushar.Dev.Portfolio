@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaGithub, FaLinkedin, FaFacebook, FaFileDownload, FaEnvelope, FaTimes } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaFacebook, FaFileDownload, FaTimes, FaEye } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Photo from "../../assets/photo.png";
@@ -134,7 +134,7 @@ const Header = () => {
                 className="flex items-center gap-2 px-4 py-2 bg-transparent border border-gray-600 text-gray-300 rounded-sm hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
               >
                 <span>Preview CV</span>
-                <FaEnvelope />
+                <FaEye />
               </motion.button>
             </motion.div>
           </motion.div>

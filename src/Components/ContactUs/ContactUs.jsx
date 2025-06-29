@@ -1,8 +1,11 @@
 import React from 'react';
 import { FaPaperPlane, FaGithub, FaLinkedin, FaFacebook, FaMapMarkerAlt, FaWhatsapp, FaEnvelope, FaCopy } from 'react-icons/fa';
 import { Player } from '@lottiefiles/react-lottie-player';
+import contactAnimation from "../../assets/contactUs.json";
+
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -78,7 +81,7 @@ const ContactUs = () => {
             <Player
               autoplay
               loop
-              src="/src/assets/contactUs.json"
+              src={contactAnimation}
               style={{ height: '400px', width: '100%' }}
             />
           </motion.div>
@@ -148,7 +151,6 @@ const ContactUs = () => {
                 <span className="text-gray-300">Gazipur, Dhaka, Bangladesh</span>
               </motion.div>
 
-              {/* WhatsApp Contact */}
               <motion.div variants={item} className="flex items-center gap-3">
                 <FaWhatsapp className="text-red-500 text-xl" />
                 <span className="text-gray-300">+880 1234 567890</span>
@@ -161,7 +163,6 @@ const ContactUs = () => {
                 </button>
               </motion.div>
 
-              {/* Email Contact */}
               <motion.div variants={item} className="flex items-center gap-3">
                 <FaEnvelope className="text-red-500 text-xl" />
                 <span className="text-gray-300">ibrahim.khalil.tushar01@gmail.com</span>
@@ -174,7 +175,6 @@ const ContactUs = () => {
                 </button>
               </motion.div>
 
-              {/* Social Links */}
               <motion.div 
                 variants={item}
                 className="flex gap-4 mt-6"
@@ -182,7 +182,7 @@ const ContactUs = () => {
                 {[
                   { icon: <FaGithub />, url: "#", label: "GitHub" },
                   { icon: <FaLinkedin />, url: "#", label: "LinkedIn" },
-                  { icon: <FaFacebook />, url: "#", label: "Twitter" }
+                  { icon: <FaFacebook />, url: "#", label: "Facebook" }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
