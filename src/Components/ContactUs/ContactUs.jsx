@@ -62,7 +62,6 @@ const ContactUs = () => {
 
   return (
     <section id="contact" className="bg-black text-white py-20 px-4 sm:px-8 relative overflow-hidden">
-           
       <div className="container mx-auto max-w-6xl">
         <motion.div
           ref={ref}
@@ -92,18 +91,10 @@ const ContactUs = () => {
             {/* Headline */}
             <motion.h2 
               variants={item}
-              className="text-3xl sm:text-4xl font-bold mb-6 text-red-500"
+              className="text-3xl sm:text-4xl font-bold mb-6 text-red-500 text-center md:text-left"
             >
               Let's Work Together
             </motion.h2>
-
-            {/* Intro Message */}
-            <motion.p 
-              variants={item}
-              className="text-gray-300 text-lg mb-8"
-            >
-              Feel free to reach out for freelance work, collaborations, or just a chat about tech and design.
-            </motion.p>
 
             {/* Contact Form */}
             <motion.form 
@@ -115,7 +106,7 @@ const ContactUs = () => {
                   <input 
                     type="text" 
                     placeholder="Your Name" 
-                    className="w-full bg-gray-800 border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="w-full bg-gray-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
                     required
                   />
                 </div>
@@ -123,7 +114,7 @@ const ContactUs = () => {
                   <input 
                     type="email" 
                     placeholder="Your Email" 
-                    className="w-full bg-gray-800 border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="w-full bg-gray-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
                     required
                   />
                 </div>
@@ -132,7 +123,7 @@ const ContactUs = () => {
                 <textarea 
                   placeholder="Your Message" 
                   rows="5"
-                  className="w-full bg-gray-800 border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full bg-gray-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
                   required
                 ></textarea>
               </div>
@@ -208,15 +199,6 @@ const ContactUs = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Bottom border */}
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="absolute bottom-0 left-0 w-full h-1 bg-red-600"
-        style={{ transformOrigin: 'left' }}
-      />
     </section>
   );
 };

@@ -43,22 +43,6 @@ const Header = () => {
       animate={inView ? "show" : "hidden"}
       className="bg-black text-white flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 py-12 md:py-16 relative overflow-hidden"
     >
-      {/* Decorative red elements */}
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute top-0 left-0 w-full h-1 bg-red-600"
-        style={{ transformOrigin: 'left' }}
-      ></motion.div>
-      
-      <motion.div 
-        initial="hidden"
-        animate="show"
-        variants={circleVariants}
-        className="absolute bottom-10 right-10 md:bottom-20 md:right-20 w-32 h-32 md:w-40 md:h-40 rounded-full bg-red-600 opacity-10 blur-xl"
-      ></motion.div>
-
       {/* Content container */}
       <div className="container mx-auto flex flex-col md:flex-row-reverse items-center justify-between gap-0 lg:gap-12 xl:gap-16 z-10">
         {/* Text content */}
@@ -162,15 +146,6 @@ const Header = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Bottom border */}
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="absolute bottom-0 left-0 w-full h-1 bg-red-600"
-        style={{ transformOrigin: 'left' }}
-      ></motion.div>
     </motion.header>
   );
 };

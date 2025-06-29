@@ -135,7 +135,7 @@ const Education = () => {
                   >
                     {/* Institution Logo */}
                     <div className="lg:w-1/3 flex justify-center lg:justify-end">
-                      <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-2 border-red-500  flex items-center justify-center overflow-hidden">
+                      <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full flex items-center justify-center overflow-hidden">
                         <img
                           src={item.logo}
                           alt={`${item.institution} logo`}
@@ -147,7 +147,7 @@ const Education = () => {
                     {/* Education Card */}
                     <div className="lg:w-2/3">
                       <div
-                        className={`relative bg-gray-800 p-6 rounded-lg border border-gray-700 ${
+                        className={`relative bg-gray-800 p-6 rounded-lg ${
                           item.current ? "ring-2 ring-red-500" : ""
                         }`}
                       >
@@ -200,19 +200,6 @@ const Education = () => {
           </div>
         </div>
       </div>
-
-      {/* Animated bottom border */}
-      <Motion
-        defaultStyle={{ scaleX: 0 }}
-        style={{ scaleX: spring(1, { stiffness: 60, damping: 15 }) }}
-      >
-        {({ scaleX }) => (
-          <div
-            className="absolute bottom-0 left-0 w-full h-1 bg-red-600"
-            style={{ transform: `scaleX(${scaleX})`, transformOrigin: "left" }}
-          ></div>
-        )}
-      </Motion>
     </section>
   );
 };

@@ -64,18 +64,18 @@ const Skills = () => {
 
   const getColorClass = (category) => {
     switch(category) {
-      case 'frontend': return 'bg-blue-900/30 border-blue-500';
-      case 'backend': return 'bg-green-900/30 border-green-500';
-      case 'database': return 'bg-indigo-900/30 border-indigo-500';
-      case 'tools': return 'bg-gray-800/30 border-gray-500';
-      default: return 'bg-blue-900/30 border-blue-500';
+      case 'frontend': return 'bg-blue-900/30';
+      case 'backend': return 'bg-green-900/30';
+      case 'database': return 'bg-indigo-900/30';
+      case 'tools': return 'bg-gray-800/30';
+      default: return 'bg-blue-900/30';
     }
   };
 
   const SkillItem = ({ skill }) => (
     <motion.div 
       whileHover={{ scale: 1.05 }}
-      className={`flex flex-col items-center justify-center p-4 m-2 rounded-lg border ${getColorClass(skill.category)} min-w-[120px] h-[120px] backdrop-blur-sm`}
+      className={`flex flex-col items-center justify-center p-4 m-2 rounded-lg ${getColorClass(skill.category)} min-w-[120px] h-[120px] backdrop-blur-sm`}
     >
       <div className="mb-2 text-white">
         {skill.icon}
@@ -104,10 +104,9 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-transparent bg-clip-text bg-red-500 ">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-transparent bg-clip-text bg-red-500">
             Technical Skills
           </h2>
-          
         </motion.div>
 
         <motion.div 
@@ -146,16 +145,7 @@ const Skills = () => {
           </motion.div>
         </motion.div>
       </div>
-        {/* Bottom border */}
-            <motion.div 
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="absolute bottom-0 left-0 w-full h-1 bg-red-600"
-              style={{ transformOrigin: 'left' }}
-            />
     </section>
-    
   );
 };
 

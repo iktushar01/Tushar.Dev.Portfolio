@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FiGithub, FiExternalLink, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import project1Img from '../../assets/projectMarathon.png';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  FiGithub,
+  FiExternalLink,
+  FiX,
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
+import project1Img from "../../assets/projectMarathon.png";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -15,99 +21,96 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
+      title: "E-Commerce Platform",
       images: [project1Img],
-      description: 'A full-featured e-commerce platform with product listings, cart functionality, and secure checkout.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Redux'],
-      liveLink: 'https://ecommerce-demo.com',
-      githubLink: 'https://github.com/username/ecommerce',
+      description:
+        "A full-featured e-commerce platform with product listings, cart functionality, and secure checkout.",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Redux"],
+      liveLink: "https://ecommerce-demo.com",
+      githubLink: "https://github.com/username/ecommerce",
       challenges: [
-        'Implementing secure payment gateway integration',
-        'Managing complex state with multiple product variants',
-        'Optimizing performance for large product catalogs'
+        "Implementing secure payment gateway integration",
+        "Managing complex state with multiple product variants",
+        "Optimizing performance for large product catalogs",
       ],
       improvements: [
-        'Add product recommendation engine',
-        'Implement AR product preview',
-        'Expand mobile app version'
-      ]
+        "Add product recommendation engine",
+        "Implement AR product preview",
+        "Expand mobile app version",
+      ],
     },
     {
       id: 2,
-      title: 'Task Management App',
+      title: "Task Management App",
       images: [project1Img],
-      description: 'A collaborative task management application with real-time updates and team features.',
-      technologies: ['React', 'Firebase', 'Material UI', 'React DnD'],
-      liveLink: 'https://taskmanager-demo.com',
-      githubLink: 'https://github.com/username/taskmanager',
+      description:
+        "A collaborative task management application with real-time updates and team features.",
+      technologies: ["React", "Firebase", "Material UI", "React DnD"],
+      liveLink: "https://taskmanager-demo.com",
+      githubLink: "https://github.com/username/taskmanager",
       challenges: [
-        'Real-time synchronization across multiple users',
-        'Drag-and-drop interface implementation',
-        'Offline functionality with sync when online'
+        "Real-time synchronization across multiple users",
+        "Drag-and-drop interface implementation",
+        "Offline functionality with sync when online",
       ],
       improvements: [
-        'Add calendar view integration',
-        'Implement AI-powered task suggestions',
-        'Add time tracking features'
-      ]
+        "Add calendar view integration",
+        "Implement AI-powered task suggestions",
+        "Add time tracking features",
+      ],
     },
     {
       id: 3,
-      title: 'Health & Fitness Tracker',
+      title: "Health & Fitness Tracker",
       images: [project1Img],
-      description: 'Comprehensive fitness tracking application with workout plans and nutrition logging.',
-      technologies: ['React Native', 'GraphQL', 'Apollo', 'MongoDB'],
-      liveLink: 'https://fitness-tracker-demo.com',
-      githubLink: 'https://github.com/username/fitness-tracker',
+      description:
+        "Comprehensive fitness tracking application with workout plans and nutrition logging.",
+      technologies: ["React Native", "GraphQL", "Apollo", "MongoDB"],
+      liveLink: "https://fitness-tracker-demo.com",
+      githubLink: "https://github.com/username/fitness-tracker",
       challenges: [
-        'Handling complex data relationships for nutrition tracking',
-        'Implementing smooth animations in React Native',
-        'Optimizing for both iOS and Android platforms'
+        "Handling complex data relationships for nutrition tracking",
+        "Implementing smooth animations in React Native",
+        "Optimizing for both iOS and Android platforms",
       ],
       improvements: [
-        'Add social features and challenges',
-        'Integrate with wearable devices',
-        'Implement machine learning for personalized recommendations'
-      ]
-    }
+        "Add social features and challenges",
+        "Integrate with wearable devices",
+        "Implement machine learning for personalized recommendations",
+      ],
+    },
   ];
 
   const openModal = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   };
 
   const nextImage = () => {
-    setCurrentImageIndex(prev => 
+    setCurrentImageIndex((prev) =>
       prev === selectedProject.images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
-    setCurrentImageIndex(prev => 
+    setCurrentImageIndex((prev) =>
       prev === 0 ? selectedProject.images.length - 1 : prev - 1
     );
   };
 
   return (
-    <section id="projects" className="py-16 px-4 sm:px-8 bg-black text-white relative overflow-hidden">
-      {/* Animated bottom border */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={inView ? { scaleX: 1 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute bottom-0 left-0 w-full h-1 bg-red-600"
-        style={{ transformOrigin: "left" }}
-      />
-
+    <section
+      id="projects"
+      className="py-16 px-4 sm:px-8 bg-black text-white relative overflow-hidden"
+    >
       <div className="container mx-auto max-w-6xl relative z-10">
-        <motion.h2 
+        <motion.h2
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -127,9 +130,9 @@ const Projects = () => {
               className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
               <div className="h-48 overflow-hidden relative">
-                <img 
-                  src={project.images[0]} 
-                  alt={project.title} 
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-xs">
@@ -142,7 +145,10 @@ const Projects = () => {
                   <p className="text-gray-300 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 4).map((tech, i) => (
-                      <span key={i} className="px-2 py-1 bg-gray-700 rounded-full text-xs">
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-gray-700 rounded-full text-xs"
+                      >
                         {tech}
                       </span>
                     ))}
@@ -180,21 +186,21 @@ const Projects = () => {
               {/* Left side - Image gallery */}
               <div className="lg:w-1/2 p-4">
                 <div className="relative h-64 md:h-96 overflow-hidden rounded-lg mb-4">
-                  <img 
-                    src={selectedProject.images[currentImageIndex]} 
-                    alt={selectedProject.title} 
+                  <img
+                    src={selectedProject.images[currentImageIndex]}
+                    alt={selectedProject.title}
                     className="w-full h-full object-contain bg-black"
                   />
-                  
+
                   {selectedProject.images.length > 1 && (
                     <>
-                      <button 
+                      <button
                         onClick={prevImage}
                         className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
                       >
                         <FiChevronLeft size={24} />
                       </button>
-                      <button 
+                      <button
                         onClick={nextImage}
                         className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
                       >
@@ -203,17 +209,19 @@ const Projects = () => {
                     </>
                   )}
                 </div>
-                
+
                 <div className="flex gap-2 overflow-x-auto pb-2">
                   {selectedProject.images.map((img, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 ${currentImageIndex === index ? 'border-red-500' : 'border-transparent'}`}
+                      className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden ${
+                        currentImageIndex === index ? "ring-2 ring-red-500" : ""
+                      }`}
                     >
-                      <img 
-                        src={img} 
-                        alt={`Thumbnail ${index + 1}`} 
+                      <img
+                        src={img}
+                        alt={`Thumbnail ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
                     </button>
@@ -223,14 +231,23 @@ const Projects = () => {
 
               {/* Right side - Details */}
               <div className="lg:w-1/2 p-6">
-                <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
-                <p className="text-gray-300 mb-6">{selectedProject.description}</p>
+                <h3 className="text-2xl font-bold mb-2">
+                  {selectedProject.title}
+                </h3>
+                <p className="text-gray-300 mb-6">
+                  {selectedProject.description}
+                </p>
 
                 <div className="mb-6">
-                  <h4 className="text-lg font-semibold mb-2 text-red-500">Technologies Used</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-red-500">
+                    Technologies Used
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map((tech, i) => (
-                      <span key={i} className="px-3 py-1 bg-gray-700 rounded-full text-sm">
+                      <span
+                        key={i}
+                        className="px-3 py-1 bg-gray-700 rounded-full text-sm"
+                      >
                         {tech}
                       </span>
                     ))}
@@ -239,7 +256,9 @@ const Projects = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <h4 className="text-lg font-semibold mb-2 text-red-500">Challenges Faced</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-red-500">
+                      Challenges Faced
+                    </h4>
                     <ul className="list-disc pl-5 text-gray-300 space-y-2">
                       {selectedProject.challenges.map((challenge, i) => (
                         <li key={i}>{challenge}</li>
@@ -247,7 +266,9 @@ const Projects = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold mb-2 text-red-500">Future Improvements</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-red-500">
+                      Future Improvements
+                    </h4>
                     <ul className="list-disc pl-5 text-gray-300 space-y-2">
                       {selectedProject.improvements.map((improvement, i) => (
                         <li key={i}>{improvement}</li>

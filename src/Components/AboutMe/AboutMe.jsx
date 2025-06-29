@@ -33,7 +33,7 @@ const AboutMe = () => {
                   transform: `translateY(${y}px)`,
                 }}
               >
-                <span className=" pb-2">About Me</span>
+                <span className="pb-2">About Me</span>
               </h2>
             )}
           </Motion>
@@ -103,7 +103,7 @@ const AboutMe = () => {
             >
               {({ opacity, scale }) => (
                 <div 
-                  className="bg-gray-800 p-8 rounded-lg border border-gray-700"
+                  className="bg-gray-800 p-8 rounded-lg"
                   style={{
                     opacity,
                     transform: `scale(${scale})`
@@ -153,19 +153,6 @@ const AboutMe = () => {
           </div>
         </div>
       </div>
-
-      {/* Animated bottom border */}
-      <Motion
-        defaultStyle={{ scaleX: 0 }}
-        style={{ scaleX: spring(1, { stiffness: 60, damping: 15 }) }}
-      >
-        {({ scaleX }) => (
-          <div 
-            className="absolute bottom-0 left-0 w-full h-1 bg-red-600"
-            style={{ transform: `scaleX(${scaleX})`, transformOrigin: 'left' }}
-          ></div>
-        )}
-      </Motion>
     </section>
   );
 };

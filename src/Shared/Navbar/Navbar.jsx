@@ -16,7 +16,7 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className="bg-black">
+    <div className="bg-black sticky top-0 z-50 w-full">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between bg-black">
         <div className="flex items-center gap-3">
           {/* Logo */}
