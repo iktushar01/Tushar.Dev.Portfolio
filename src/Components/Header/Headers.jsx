@@ -2,6 +2,8 @@ import React from "react";
 import { FaGithub, FaLinkedin, FaFacebook, FaFileDownload, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Photo from "../../assets/photo.png";
+
 
 const Header = () => {
   // Animation variants
@@ -110,7 +112,7 @@ const Header = () => {
                 download
                 className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
               >
-                <span>Download Resume</span>
+                <span>Download CV</span>
                 <FaFileDownload />
               </motion.a>
               <motion.a
@@ -138,7 +140,7 @@ const Header = () => {
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              src="/src/assets/photo.png"
+              src={Photo}
               alt="Ibrahim Khalil Tushar"
               className="w-full md:w-[65%] h-96 md:h-full object-cover"
               loading="eager"

@@ -38,7 +38,7 @@ const Skills = () => {
   const allSkills = [
     // Frontend skills - blue
     { name: "React.js", level: 90, icon: <FaReact className="text-2xl" />, category: "frontend" },
-    { name: "Redux", level: 80, icon: <SiRedux className="text-2xl" />, category: "frontend" },
+    // { name: "Redux", level: 80, icon: <SiRedux className="text-2xl" />, category: "frontend" },
     { name: "JavaScript", level: 85, icon: <SiJavascript className="text-2xl" />, category: "frontend" },
     { name: "Tailwind CSS", level: 85, icon: <SiTailwindcss className="text-2xl" />, category: "frontend" },
     { name: "HTML5", level: 90, icon: <SiHtml5 className="text-2xl" />, category: "frontend" },
@@ -52,14 +52,14 @@ const Skills = () => {
     
     // Database skills - indigo
     { name: "MongoDB", level: 85, icon: <SiMongodb className="text-2xl" />, category: "database" },
-    { name: "Mongoose", level: 80, icon: <SiMongoose className="text-2xl" />, category: "database" },
+    // { name: "Mongoose", level: 80, icon: <SiMongoose className="text-2xl" />, category: "database" },
     
     // Tools skills - gray
     { name: "Git", level: 85, icon: <SiGit className="text-2xl" />, category: "tools" },
     { name: "GitHub", level: 90, icon: <SiGithub className="text-2xl" />, category: "tools" },
-    { name: "Postman", level: 80, icon: <SiPostman className="text-2xl" />, category: "tools" },
-    { name: "Firebase", level: 70, icon: <SiFirebase className="text-2xl" />, category: "tools" },
-    { name: "Vercel", level: 75, icon: <SiVercel className="text-2xl" />, category: "tools" }
+    { name: "Postman", level: 70, icon: <SiPostman className="text-2xl" />, category: "tools" },
+    { name: "Firebase", level: 80, icon: <SiFirebase className="text-2xl" />, category: "tools" },
+    { name: "Vercel", level: 80, icon: <SiVercel className="text-2xl" />, category: "tools" }
   ];
 
   const getColorClass = (category) => {
