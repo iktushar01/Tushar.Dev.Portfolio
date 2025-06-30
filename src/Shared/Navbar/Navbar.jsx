@@ -39,7 +39,7 @@ export default function Navbar() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      // No navbar height offset for mobile
+      // No navbar height offset for mobile/tablet
       const offsetPosition = element.offsetTop;
       
       window.scrollTo({
@@ -58,7 +58,7 @@ export default function Navbar() {
       
       const observerOptions = {
         root: null,
-        rootMargin: '0px 0px 0px 0px', // No offset for mobile
+        rootMargin: '0px 0px 0px 0px', // No offset for mobile/tablet
         threshold: 0.3
       };
 
@@ -108,7 +108,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14"> {/* Adjusted height */}
+        <div className="flex items-center justify-between h-14">
           {/* Logo - Left */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
@@ -118,14 +118,14 @@ export default function Navbar() {
             <img
               src={Logo}
               alt="Logo"
-              className="h-8 w-auto cursor-pointer" // Adjusted logo size
+              className="h-8 w-auto cursor-pointer"
               onClick={() => scrollToSection("home")}
             />
           </motion.div>
 
-          {/* Desktop Navigation - Center */}
-          <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-            <div className="flex space-x-2"> {/* Increased space between items */}
+          {/* Desktop Navigation - Center (now only shows on lg and up) */}
+          <nav className="hidden lg:flex items-center absolute left-1/2 transform -translate-x-1/2">
+            <div className="flex space-x-2">
               {navItems.map((item) => (
                 <motion.button
                   key={item.id}
@@ -138,7 +138,7 @@ export default function Navbar() {
                     activeItem === item.id
                       ? "text-white bg-red-600/90 shadow-md"
                       : "text-gray-300 hover:text-white hover:bg-gray-800/50"
-                  }`} // Increased padding and font size
+                  }`}
                   onClick={() => scrollToSection(item.id)}
                 >
                   {item.icon}
@@ -148,8 +148,8 @@ export default function Navbar() {
             </div>
           </nav>
 
-          {/* Contact Button - Right */}
-          <div className="hidden md:flex items-center">
+          {/* Contact Button - Right (now only shows on lg and up) */}
+          <div className="hidden lg:flex items-center">
             <motion.button
               whileHover={{ 
                 y: -2,
@@ -160,7 +160,7 @@ export default function Navbar() {
                 activeItem === contactItem.id
                   ? "text-white bg-red-600/90 shadow-md"
                   : "text-gray-100 hover:text-white hover:bg-gray-800/50"
-              }`} // Increased padding and font size
+              }`}
               onClick={() => scrollToSection(contactItem.id)}
             >
               {contactItem.icon}
@@ -168,8 +168,8 @@ export default function Navbar() {
             </motion.button>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile/Tablet menu button (shows on md and lg) */}
+          <div className="lg:hidden flex items-center">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
@@ -177,16 +177,16 @@ export default function Navbar() {
               whileTap={{ scale: 0.9 }}
             >
               {isOpen ? (
-                <FaTimes className="block h-5 w-5" /> // Adjusted icon size
+                <FaTimes className="block h-5 w-5" />
               ) : (
-                <FaBars className="block h-5 w-5" /> // Adjusted icon size
+                <FaBars className="block h-5 w-5" />
               )}
             </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile/Tablet menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -194,9 +194,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800"
+            className="lg:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-800"
           >
-            <div className="px-3 pt-2 pb-4 space-y-2"> {/* Increased padding and spacing */}
+            <div className="px-3 pt-2 pb-4 space-y-2">
               {[...navItems, contactItem].map((item) => (
                 <motion.button
                   key={item.id}
@@ -206,10 +206,10 @@ export default function Navbar() {
                     activeItem === item.id
                       ? "bg-red-600 text-white"
                       : "text-gray-300 hover:text-white hover:bg-gray-800"
-                  }`} // Increased padding and font size
+                  }`}
                   onClick={() => scrollToSection(item.id)}
                 >
-                  <span className="mr-3">{item.icon}</span> {/* Increased icon margin */}
+                  <span className="mr-3">{item.icon}</span>
                   {item.label}
                 </motion.button>
               ))}
