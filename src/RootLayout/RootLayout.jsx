@@ -17,7 +17,7 @@ const RootLayout = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-black">
       {!isTouchDevice && <SmoothFollower />}
       <Navbar />
       <Outlet />

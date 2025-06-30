@@ -27,6 +27,7 @@ import projectThreeImgTwo from "../../assets/ProjectThree/two.png";
 import projectThreeImgThree from "../../assets/ProjectThree/three.png";
 import projectThreeImgFour from "../../assets/ProjectThree/four.png";
 import projectThreeImgFive from "../../assets/ProjectThree/five.png";
+import { Fade } from "react-awesome-reveal";
 
 // Technology color mapping
 const techColors = {
@@ -74,7 +75,7 @@ const Projects = () => {
         "Tailwind CSS",
       ],
       liveLink: "https://stridez-b25a1.web.app/",
-      githubLink: "https://github.com/username/marathon-management-system",
+      githubLink: "https://github.com/iktushar01/Marathon-Management-System.git",
       challenges: [
         "Implementing secure JWT-based authentication with Firebase and server verification",
         "Managing user roles and protecting routes with role-based access",
@@ -108,7 +109,7 @@ const Projects = () => {
         "DaisyUI",
       ],
       liveLink: "https://recipebook99.netlify.app/",
-      githubLink: "https://github.com/username/recipebook-client",
+      githubLink: "https://github.com/iktushar01/Recipe-Book.git",
       challenges: [
         "Building role-based access control for private routes",
         "Creating dynamic filtering by cuisine type",
@@ -141,7 +142,7 @@ const Projects = () => {
         "React Router",
       ],
       liveLink: "https://thandasurprise.netlify.app/",
-      githubLink: "https://github.com/username/thandasurprise-client",
+      githubLink: "https://github.com/iktushar01/thanda-surprise.git",
       challenges: [
         "Handling secure authentication with persistent user sessions",
         "Dynamically displaying subscription details from hosted JSON data",
@@ -183,7 +184,8 @@ const Projects = () => {
   };
 
   return (
-    <section
+    <Fade delay={100}>
+      <section
       id="projects"
       className="py-16 px-4 sm:px-8 bg-black text-white relative overflow-hidden"
     >
@@ -402,6 +404,7 @@ const Projects = () => {
         </div>
       )}
     </section>
+    </Fade>
   );
 };
 

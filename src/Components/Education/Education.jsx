@@ -4,6 +4,7 @@ import { Motion, spring } from "react-motion";
 import { useInView } from "react-intersection-observer";
 import uttaraLogo from "../../assets/UttaraUniversityLogo.jpg";
 import rcpscLogo from "../../assets/rcpscLogo.png";
+import { Fade } from "react-awesome-reveal";
 
 const Education = () => {
   // Animation configurations
@@ -73,7 +74,8 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="bg-black text-white py-16 px-4 sm:px-8 relative overflow-hidden">
+    <Fade delay={100}>
+      <section id="education" className="bg-black text-white py-16 px-4 sm:px-8 relative overflow-hidden">
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Animated Title */}
         <div ref={titleRef}>
@@ -201,6 +203,7 @@ const Education = () => {
         </div>
       </div>
     </section>
+    </Fade>
   );
 };
 

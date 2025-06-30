@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import Marquee from "react-fast-marquee";
 import { FaReact, FaNodeJs, FaDatabase, FaTools } from 'react-icons/fa';
 import { SiRedux, SiTailwindcss, SiExpress, SiMongodb, SiMongoose, SiJavascript, SiHtml5, SiCss3, SiGit, SiGithub, SiPostman, SiFirebase, SiVercel } from 'react-icons/si';
+import { Fade } from 'react-awesome-reveal';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -97,7 +98,8 @@ const Skills = () => {
   );
 
   return (
-    <section id="skills" className="bg-black text-white py-16 px-4 sm:px-8 relative overflow-hidden">
+    <Fade delay={100}>
+      <section id="skills" className="bg-black text-white py-16 px-4 sm:px-8 relative overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -147,6 +149,7 @@ const Skills = () => {
         </motion.div>
       </div>
     </section>
+    </Fade>
   );
 };
 
