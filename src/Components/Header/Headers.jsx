@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaGithub,
   FaLinkedin,
   FaFacebook,
   FaFileDownload,
-  FaTimes,
   FaEye,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Photo from "../../assets/photo.png";
-import CV from "../../assets/Full_Stack_Developer_Application_Email.pdf";
+import CV from "../../assets/Profile.pdf";
 import { Fade } from "react-awesome-reveal";
 
 const Header = () => {
-  const [showPreview, setShowPreview] = useState(false);
-
   // Animation variants
   const container = {
     hidden: { opacity: 0 },
@@ -55,9 +52,9 @@ const Header = () => {
     document.body.removeChild(link);
   };
 
-  // Function to toggle preview modal
-  const togglePreview = () => {
-    setShowPreview(!showPreview);
+  // Google Drive link for preview
+  const previewCV = () => {
+    window.open("https://drive.google.com/file/d/13ThtZon4tzJi0Gh2YeUdjct0DvmQ3fZ0/view?usp=drive_link", "_blank");
   };
 
   return (
@@ -155,7 +152,7 @@ const Header = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={togglePreview}
+                  onClick={previewCV}
                   className="flex items-center gap-2 px-4 py-2 bg-transparent border border-gray-600 text-gray-300 rounded-sm hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
                 >
                   <span>Preview CV</span>
@@ -185,28 +182,6 @@ const Header = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* PDF Preview Modal */}
-        {showPreview && (
-          <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
-            <div className="relative w-full max-w-4xl h-full max-h-screen">
-              <button
-                onClick={togglePreview}
-                className="absolute top-4 right-4 text-white hover:text-red-500 z-50"
-                aria-label="Close preview"
-              >
-                <FaTimes size={24} />
-              </button>
-              <div className="h-full w-full flex items-center justify-center">
-                <iframe
-                  src={CV}
-                  className="w-full h-full border-none"
-                  title="CV Preview"
-                />
-              </div>
-            </div>
-          </div>
-        )}
       </motion.header>
     </Fade>
   );
