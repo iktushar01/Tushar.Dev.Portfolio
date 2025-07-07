@@ -9,7 +9,7 @@ import {
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Photo from "../../assets/photo.png";
-import CV from "../../assets/Profile.pdf";
+import CV from "../../assets/Tushar Resume.pdf";
 import { Fade } from "react-awesome-reveal";
 
 const Header = () => {
@@ -54,7 +54,7 @@ const Header = () => {
 
   // Google Drive link for preview
   const previewCV = () => {
-    window.open("https://drive.google.com/file/d/13ThtZon4tzJi0Gh2YeUdjct0DvmQ3fZ0/view?usp=drive_link", "_blank");
+    window.open("https://drive.google.com/file/d/1uSAMwyHVfg1hN8bbRyVzot_qXWVZmfFW/view?usp=sharing", "_blank");
   };
 
   return (
