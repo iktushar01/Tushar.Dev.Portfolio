@@ -9,7 +9,7 @@ import {
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Photo from "../../assets/photo.png";
-import CV from "../../assets/Tushar Resume.pdf";
+import CV from "../../assets/Tushar Resume(2).pdf";
 import { Fade } from "react-awesome-reveal";
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
     // Create a temporary anchor element
     const link = document.createElement("a");
     link.href = CV;
-    link.download = "Ibrahim_Khalil_Tushar_Resume.pdf"; // You can set the filename here
+    link.download = "Ibrahim_Khalil_Tushar_Resume.pdf"; 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -54,7 +54,10 @@ const Header = () => {
 
   // Google Drive link for preview
   const previewCV = () => {
-    window.open("https://drive.google.com/file/d/1uSAMwyHVfg1hN8bbRyVzot_qXWVZmfFW/view?usp=sharing", "_blank");
+    window.open(
+      "https://drive.google.com/file/d/1bRuVbnABTWPNAQPVsg7pQSnKd9-5YbKy/view",
+      "_blank"
+    );
   };
 
   return (
