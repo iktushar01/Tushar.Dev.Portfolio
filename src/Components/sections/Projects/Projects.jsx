@@ -10,13 +10,16 @@ import {
 } from "react-icons/fi";
 import { Fade } from "react-awesome-reveal";
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
+import { containerVariants, itemVariants, textVariants, cardVariants, buttonVariants } from "../../../utils/animations";
 import { getTechColor } from "../../../utils/techColors";
 import { projectsData } from "../../../data/projects.js";
+import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [ref, inView] = useIntersectionObserver({ threshold: 0.2 });
+  const { deviceType, isReducedMotion, getResponsiveDelay, getResponsiveScale, getResponsiveDuration } = useResponsiveAnimation();
 
   const projects = projectsData;
 
@@ -53,9 +56,10 @@ const Projects = () => {
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.h2
             ref={ref}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            variants={textVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
             className="text-3xl sm:text-4xl font-bold mb-12 text-center text-red-500"
           >
             My Projects
@@ -65,9 +69,19 @@ const Projects = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ 
+                  duration: getResponsiveDuration(0.6), 
+                  delay: getResponsiveDelay(index * 0.1) 
+                }}
+                whileHover={!isReducedMotion ? { 
+                  scale: getResponsiveScale(1.02),
+                  y: -5,
+                  transition: { duration: 0.2 }
+                } : {}}
                 className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row"
               >
                 <div className="md:w-1/2 h-48 md:h-auto overflow-hidden relative">
@@ -82,8 +96,24 @@ const Projects = () => {
                 </div>
                 <div className="md:w-1/2 p-6 flex-grow flex flex-col">
                   <div className="flex-grow">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <motion.h3 
+                      variants={textVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      transition={{ delay: getResponsiveDelay(index * 0.1 + 0.2) }}
+                      className="text-xl font-bold mb-2"
+                    >
+                      {project.title}
+                    </motion.h3>
+                    <motion.p 
+                      variants={textVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      transition={{ delay: getResponsiveDelay(index * 0.1 + 0.3) }}
+                      className="text-gray-300 mb-4"
+                    >
+                      {project.description}
+                    </motion.p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.slice(0, 4).map((tech, i) => (
                         <span
@@ -103,31 +133,52 @@ const Projects = () => {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <a
+                    <motion.a
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      variants={buttonVariants}
+                      whileHover={{ 
+                        scale: getResponsiveScale(1.05),
+                        boxShadow: '0 10px 25px rgba(239, 68, 68, 0.3)',
+                        transition: { duration: 0.2 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center px-2 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-300 text-sm"
                     >
                       <FiExternalLink className="mr-1" />
                       Live
-                    </a>
-                    <a
+                    </motion.a>
+                    <motion.a
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      variants={buttonVariants}
+                      whileHover={{ 
+                        scale: getResponsiveScale(1.05),
+                        boxShadow: '0 10px 25px rgba(107, 114, 128, 0.3)',
+                        transition: { duration: 0.2 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center px-2 py-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors duration-300 text-sm"
                     >
                       <FiGithub className="mr-1" />
                       GitHub
-                    </a>
-                    <button
+                    </motion.a>
+                    <motion.button
                       onClick={() => openModal(project)}
+                      variants={buttonVariants}
+                      whileHover={{ 
+                        scale: getResponsiveScale(1.05),
+                        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+                        transition: { duration: 0.2 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center py-2 bg-gray-900 hover:bg-gray-700 rounded-md transition-colors duration-300 text-sm"
                     >
                       <FiEye className="mr-1" />
                       Details
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
               </motion.div>

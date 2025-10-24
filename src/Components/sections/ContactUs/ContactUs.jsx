@@ -14,7 +14,8 @@ import contactAnimation from "../../../assets/contactUs.json";
 import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
-import { containerVariants, itemVariants } from "../../../utils/animations";
+import { containerVariants, itemVariants, textVariants, buttonVariants } from "../../../utils/animations";
+import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -22,6 +23,7 @@ const MySwal = withReactContent(Swal);
 
 const ContactUs = () => {
   const [ref, inView] = useIntersectionObserver();
+  const { deviceType, isReducedMotion, getResponsiveDelay, getResponsiveScale, getResponsiveDuration } = useResponsiveAnimation();
 
   const copyToClipboard = (text, type) => {
     navigator.clipboard.writeText(text);
@@ -74,13 +76,16 @@ const ContactUs = () => {
 
             {/* Right Column - Contact Content (50%) */}
             <motion.div variants={containerVariants} className="w-full lg:w-1/2">
-              {/* Headline */}
-              <motion.h2
-                variants={itemVariants}
-                className="text-3xl sm:text-4xl font-bold mb-6 text-red-500 text-center md:text-left"
-              >
-                Let's Work Together
-              </motion.h2>
+                {/* Headline */}
+                <motion.h2
+                  variants={textVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
+                  className="text-3xl sm:text-4xl font-bold mb-6 text-red-500 text-center md:text-left"
+                >
+                  Let's Work Together
+                </motion.h2>
 
               {/* Contact Form */}
               <motion.form variants={itemVariants} className="space-y-4 mb-8">
@@ -110,15 +115,20 @@ const ContactUs = () => {
                     required
                   ></textarea>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-all duration-300 text-lg font-medium"
-                >
-                  <FaPaperPlane />
-                  <span>Send Message</span>
-                </motion.button>
+                  <motion.button
+                    variants={buttonVariants}
+                    whileHover={{ 
+                      scale: getResponsiveScale(1.02),
+                      boxShadow: '0 10px 25px rgba(239, 68, 68, 0.3)',
+                      transition: { duration: 0.2 }
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-all duration-300 text-lg font-medium"
+                  >
+                    <FaPaperPlane />
+                    <span>Send Message</span>
+                  </motion.button>
               </motion.form>
 
               {/* Alternative Contact */}

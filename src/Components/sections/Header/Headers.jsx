@@ -9,12 +9,14 @@ import {
 import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
-import { containerVariants, itemVariants, imageVariants } from "../../../utils/animations";
+import { containerVariants, itemVariants, imageVariants, textVariants, buttonVariants, iconVariants } from "../../../utils/animations";
+import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
 import { photo } from "../../../assets/images";
 
 const Header = () => {
   // Intersection Observer hooks
   const [ref, inView] = useIntersectionObserver();
+  const { deviceType, isReducedMotion, getResponsiveDelay, getResponsiveScale, getResponsiveDuration } = useResponsiveAnimation();
 
   // Function to handle download
   const handleDownload = () => {
@@ -53,73 +55,120 @@ const Header = () => {
             animate={inView ? "show" : "hidden"}
             className="text-center md:text-left max-w-2xl order-2 md:order-1"
           >
-            <motion.h1
-              variants={itemVariants}
-              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white"
-            >
-              Hello I'm
-            </motion.h1>
+              <motion.h1
+                variants={textVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
+                className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white"
+              >
+                Hello I'm
+              </motion.h1>
 
-            <motion.div variants={itemVariants} className="mb-6">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 text-red-500">
-                Ibrahim Khalil Tushar
-              </h2>
-              <h3 className="text-lg font-bold sm:text-xl md:text-3xl text-gray-200">
-                MERN Stack Developer
-              </h3>
-            </motion.div>
+              <motion.div 
+                variants={textVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                transition={{ delay: getResponsiveDelay(0.2), duration: getResponsiveDuration(0.6) }}
+                className="mb-6"
+              >
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 text-red-500">
+                  Ibrahim Khalil Tushar
+                </h2>
+                <h3 className="text-lg font-bold sm:text-xl md:text-3xl text-gray-200">
+                  MERN Stack Developer
+                </h3>
+              </motion.div>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-200 text-base sm:text-lg mb-8"
-            >
-              I specialize in building full-stack web applications using
-              MongoDB, Express.js, React, and Node.js. Focused on creating
-              efficient, scalable solutions with clean code architecture.
-            </motion.p>
+              <motion.p
+                variants={textVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                transition={{ delay: getResponsiveDelay(0.4), duration: getResponsiveDuration(0.6) }}
+                className="text-gray-200 text-base sm:text-lg mb-8"
+              >
+                I specialize in building full-stack web applications using
+                MongoDB, Express.js, React, and Node.js. Focused on creating
+                efficient, scalable solutions with clean code architecture.
+              </motion.p>
 
             <motion.div
               variants={containerVariants}
               className="flex flex-col items-center md:items-start gap-4"
             >
-              {/* Social Icons Row */}
-              <motion.div variants={itemVariants} className="flex gap-4 sm:gap-5">
-                <motion.a
-                  whileHover={{ y: -3 }}
-                  target="_blank"
-                  href="https://github.com/iktushar01"
-                  className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
-                  aria-label="GitHub"
+                {/* Social Icons Row */}
+                <motion.div 
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  transition={{ delay: getResponsiveDelay(0.6), duration: getResponsiveDuration(0.6) }}
+                  className="flex gap-4 sm:gap-5"
                 >
-                  <FaGithub />
-                </motion.a>
-                <motion.a
-                  whileHover={{ y: -3 }}
-                  target="_blank"
-                  href="https://www.linkedin.com/in/iktushar01/"
-                  className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin />
-                </motion.a>
-                <motion.a
-                  whileHover={{ y: -3 }}
-                  target="_blank"
-                  href="https://www.facebook.com/ibrahim.khalil.tushar.2024"
-                  className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
-                  aria-label="Facebook"
-                >
-                  <FaFacebook />
-                </motion.a>
-              </motion.div>
+                  <motion.a
+                    variants={iconVariants}
+                    whileHover={{ 
+                      y: -3, 
+                      scale: getResponsiveScale(1.2),
+                      rotate: 360,
+                      transition: { duration: 0.3 }
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    target="_blank"
+                    href="https://github.com/iktushar01"
+                    className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub />
+                  </motion.a>
+                  <motion.a
+                    variants={iconVariants}
+                    whileHover={{ 
+                      y: -3, 
+                      scale: getResponsiveScale(1.2),
+                      rotate: 360,
+                      transition: { duration: 0.3 }
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    target="_blank"
+                    href="https://www.linkedin.com/in/iktushar01/"
+                    className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin />
+                  </motion.a>
+                  <motion.a
+                    variants={iconVariants}
+                    whileHover={{ 
+                      y: -3, 
+                      scale: getResponsiveScale(1.2),
+                      rotate: 360,
+                      transition: { duration: 0.3 }
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    target="_blank"
+                    href="https://www.facebook.com/ibrahim.khalil.tushar.2024"
+                    className="text-2xl text-gray-300 hover:text-red-500 transition-colors duration-300"
+                    aria-label="Facebook"
+                  >
+                    <FaFacebook />
+                  </motion.a>
+                </motion.div>
 
               {/* Action Buttons */}
               <motion.div
                 variants={itemVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                transition={{ delay: getResponsiveDelay(0.8), duration: getResponsiveDuration(0.6) }}
                 className="flex gap-3 sm:gap-4 flex-wrap justify-center"
               >
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  variants={buttonVariants}
+                  whileHover={{ 
+                    scale: getResponsiveScale(1.05),
+                    boxShadow: '0 10px 25px rgba(239, 68, 68, 0.3)',
+                    transition: { duration: 0.2 }
+                  }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleDownload}
                   className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
@@ -128,7 +177,12 @@ const Header = () => {
                   <FaFileDownload />
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  variants={buttonVariants}
+                  whileHover={{ 
+                    scale: getResponsiveScale(1.05),
+                    boxShadow: '0 10px 25px rgba(107, 114, 128, 0.3)',
+                    transition: { duration: 0.2 }
+                  }}
                   whileTap={{ scale: 0.95 }}
                   onClick={previewCV}
                   className="flex items-center gap-2 px-4 py-2 bg-transparent border border-gray-600 text-gray-300 rounded-sm hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"

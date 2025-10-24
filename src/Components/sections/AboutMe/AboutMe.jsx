@@ -1,15 +1,17 @@
 import React from "react";
 import { FaCode, FaPaintBrush, FaBook } from "react-icons/fa";
-import { Motion, spring } from "react-motion";
+import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
 import { useTitleObserver, useContentObserver, useSkillsObserver } from "../../../hooks/useIntersectionObserver";
-import { fadeInConfig, slideUpConfig } from "../../../utils/animations";
+import { textVariants, cardVariants } from "../../../utils/animations";
+import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
 
 const AboutMe = () => {
   // Intersection Observer hooks for scroll-triggered animations
   const [titleRef, titleInView] = useTitleObserver();
   const [contentRef, contentInView] = useContentObserver();
   const [skillsRef, skillsInView] = useSkillsObserver();
+  const { getResponsiveDelay, getResponsiveDuration } = useResponsiveAnimation();
 
   return (
     <Fade delay={100}>
@@ -20,25 +22,15 @@ const AboutMe = () => {
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Animated Title */}
           <div ref={titleRef}>
-            <Motion
-              defaultStyle={{ opacity: 0, y: 20 }}
-              style={{
-                opacity: titleInView ? spring(1, fadeInConfig) : spring(0),
-                y: titleInView ? spring(0, slideUpConfig) : spring(20),
-              }}
+            <motion.h2
+              variants={textVariants}
+              initial="hidden"
+              animate={titleInView ? "visible" : "hidden"}
+              transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-center text-red-500"
             >
-              {({ opacity, y }) => (
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-center text-red-500"
-                  style={{
-                    opacity,
-                    transform: `translateY(${y}px)`,
-                  }}
-                >
-                  <span className="pb-2">About Me</span>
-                </h2>
-              )}
-            </Motion>
+              <span className="pb-2">About Me</span>
+            </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -70,107 +62,78 @@ const AboutMe = () => {
                     "When I'm not coding, you'll find me watching movies, experimenting with playing online game like valorant , Free Fire, PUBG. I believe diverse interests fuel creativity in programming. I'm also passionate about tech education and regularly mentor aspiring developers in my community.",
                 },
               ].map((item, index) => (
-                <Motion
+                <motion.div
                   key={index}
-                  defaultStyle={{ opacity: 0, x: -20 }}
-                  style={{
-                    opacity: contentInView
-                      ? spring(1, {
-                          ...fadeInConfig,
-                          delay: index * 100,
-                        })
-                      : spring(0),
-                    x: contentInView
-                      ? spring(0, {
-                          ...slideUpConfig,
-                          delay: index * 100,
-                        })
-                      : spring(-20),
+                  variants={textVariants}
+                  initial="hidden"
+                  animate={contentInView ? "visible" : "hidden"}
+                  transition={{ 
+                    delay: getResponsiveDelay(index * 0.1), 
+                    duration: getResponsiveDuration(0.6) 
                   }}
+                  className="flex items-start gap-4"
                 >
-                  {({ opacity, x }) => (
-                    <div
-                      className="flex items-start gap-4"
-                      style={{
-                        opacity,
-                        transform: `translateX(${x}px)`,
-                      }}
-                    >
-                      {item.icon}
-                      <div>
-                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-gray-300">{item.content}</p>
-                      </div>
-                    </div>
-                  )}
-                </Motion>
+                  {item.icon}
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                    <p className="text-gray-300">{item.content}</p>
+                  </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Skills visualization with animation */}
             <div ref={skillsRef}>
-              <Motion
-                defaultStyle={{ opacity: 0, scale: 0.95 }}
-                style={{
-                  opacity: skillsInView ? spring(1, fadeInConfig) : spring(0),
-                  scale: skillsInView ? spring(1, slideUpConfig) : spring(0.95),
-                }}
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                animate={skillsInView ? "visible" : "hidden"}
+                transition={{ delay: getResponsiveDelay(0.2), duration: getResponsiveDuration(0.6) }}
+                className="bg-gray-800 p-8 rounded-lg"
               >
-                {({ opacity, scale }) => (
-                  <div
-                    className="bg-gray-800 p-8 rounded-lg"
-                    style={{
-                      opacity,
-                      transform: `scale(${scale})`,
-                    }}
-                  >
-                    <h3 className="text-2xl font-bold mb-6 text-center text-red-500">
-                      My Approach
-                    </h3>
-                    <ul className="space-y-4">
-                      {[
-                        { skill: "Clean Code", level: 90 },
-                        { skill: "Problem Solving", level: 80 },
-                        { skill: "UI/UX Design", level: 90 },
-                        { skill: "Continuous Learning", level: 100 },
-                      ].map((item, index) => (
-                        <Motion
-                          key={index}
-                          defaultStyle={{ width: 0 }}
-                          style={{
-                            width: skillsInView
-                              ? spring(item.level, {
-                                  stiffness: 150,
-                                  damping: 20,
-                                  delay: index * 100,
-                                })
-                              : spring(0),
+                <h3 className="text-2xl font-bold mb-6 text-center text-red-500">
+                  My Approach
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    { skill: "Clean Code", level: 90 },
+                    { skill: "Problem Solving", level: 80 },
+                    { skill: "UI/UX Design", level: 90 },
+                    { skill: "Continuous Learning", level: 100 },
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={skillsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ 
+                        delay: getResponsiveDelay(index * 0.1 + 0.3), 
+                        duration: getResponsiveDuration(0.5) 
+                      }}
+                    >
+                      <div className="flex justify-between mb-1">
+                        <span className="font-medium">
+                          {item.skill}
+                        </span>
+                        <span className="text-red-500">
+                          {item.level}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2.5">
+                        <motion.div
+                          className="bg-red-600 h-2.5 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={skillsInView ? { width: `${item.level}%` } : { width: 0 }}
+                          transition={{ 
+                            delay: getResponsiveDelay(index * 0.1 + 0.5), 
+                            duration: 1,
+                            ease: "easeOut"
                           }}
-                        >
-                          {({ width }) => (
-                            <li>
-                              <div className="flex justify-between mb-1">
-                                <span className="font-medium">
-                                  {item.skill}
-                                </span>
-                                <span className="text-red-500">
-                                  {Math.round(width)}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-gray-700 rounded-full h-2.5">
-                                <div
-                                  className="bg-red-600 h-2.5 rounded-full"
-                                  style={{ width: `${width}%` }}
-                                ></div>
-                              </div>
-                            </li>
-                          )}
-                        </Motion>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </Motion>
+                        />
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
             </div>
           </div>
         </div>

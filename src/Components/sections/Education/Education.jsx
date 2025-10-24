@@ -1,15 +1,17 @@
 import React from "react";
-import { Motion, spring } from "react-motion";
+import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
 import { useTitleObserver, useContentObserver } from "../../../hooks/useIntersectionObserver";
-import { fadeInConfig, slideUpConfig } from "../../../utils/animations";
+import { textVariants, cardVariants } from "../../../utils/animations";
 import { getTechColor } from "../../../utils/techColors";
 import { educationData } from "../../../data/education.jsx";
+import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
 
 const Education = () => {
   // Intersection Observer hooks
   const [titleRef, titleInView] = useTitleObserver();
   const [cardsRef, cardsInView] = useContentObserver();
+  const { getResponsiveDelay, getResponsiveDuration } = useResponsiveAnimation();
 
 
   return (
@@ -21,25 +23,15 @@ const Education = () => {
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Animated Title */}
           <div ref={titleRef}>
-            <Motion
-              defaultStyle={{ opacity: 0, y: 20 }}
-              style={{
-                opacity: titleInView ? spring(1, fadeInConfig) : spring(0),
-                y: titleInView ? spring(0, slideUpConfig) : spring(20),
-              }}
+            <motion.h2
+              variants={textVariants}
+              initial="hidden"
+              animate={titleInView ? "visible" : "hidden"}
+              transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-center text-red-500"
             >
-              {({ opacity, y }) => (
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-center text-red-500"
-                  style={{
-                    opacity,
-                    transform: `translateY(${y}px)`,
-                  }}
-                >
-                  <span className="pb-2">Education Journey</span>
-                </h2>
-              )}
-            </Motion>
+              <span className="pb-2">Education Journey</span>
+            </motion.h2>
           </div>
 
           {/* Timeline with Cards */}
@@ -49,34 +41,19 @@ const Education = () => {
 
             <div className="space-y-12 lg:space-y-16">
               {educationData.map((item, index) => (
-                <Motion
+                <motion.div
                   key={item.id}
-                  defaultStyle={{ opacity: 0, y: 50 }}
-                  style={{
-                    opacity: cardsInView
-                      ? spring(1, {
-                          ...fadeInConfig,
-                          delay: index * 150,
-                        })
-                      : spring(0),
-                    y: cardsInView
-                      ? spring(0, {
-                          ...slideUpConfig,
-                          delay: index * 150,
-                        })
-                      : spring(50),
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate={cardsInView ? "visible" : "hidden"}
+                  transition={{ 
+                    delay: getResponsiveDelay(index * 0.15), 
+                    duration: getResponsiveDuration(0.6) 
                   }}
+                  className={`relative flex flex-col lg:flex-row ${
+                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  } items-center gap-8`}
                 >
-                  {({ opacity, y }) => (
-                    <div
-                      className={`relative flex flex-col lg:flex-row ${
-                        index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                      } items-center gap-8`}
-                      style={{
-                        opacity,
-                        transform: `translateY(${y}px)`,
-                      }}
-                    >
                       {/* Institution Logo */}
                       <div className="lg:w-1/3 flex justify-center lg:justify-end">
                         <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full flex items-center justify-center overflow-hidden">
@@ -137,9 +114,7 @@ const Education = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </Motion>
+                    </motion.div>
               ))}
             </div>
           </div>
