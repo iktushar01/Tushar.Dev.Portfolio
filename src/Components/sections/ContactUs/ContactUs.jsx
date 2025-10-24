@@ -10,11 +10,11 @@ import {
   FaCopy,
 } from "react-icons/fa";
 import { Player } from "@lottiefiles/react-lottie-player";
-import contactAnimation from "../../assets/contactUs.json";
+import contactAnimation from "../../../assets/contactUs.json";
 import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import { containerVariants, itemVariants } from "../../utils/animations";
+import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
+import { containerVariants, itemVariants } from "../../../utils/animations";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -56,12 +56,12 @@ const ContactUs = () => {
             ref={ref}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
-            variants={container}
+            variants={containerVariants}
             className="flex flex-col lg:flex-row gap-12 items-center"
           >
             {/* Left Column - Lottie Animation (50%) */}
             <motion.div
-              variants={item}
+              variants={itemVariants}
               className="w-full hidden md:block lg:w-1/2"
             >
               <Player

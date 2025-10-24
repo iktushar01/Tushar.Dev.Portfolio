@@ -2,8 +2,8 @@ import React from "react";
 import { FaCode, FaPaintBrush, FaBook } from "react-icons/fa";
 import { Motion, spring } from "react-motion";
 import { Fade } from "react-awesome-reveal";
-import { useTitleObserver, useContentObserver, useSkillsObserver } from "../../hooks/useIntersectionObserver";
-import { fadeInConfig, slideUpConfig } from "../../utils/animations";
+import { useTitleObserver, useContentObserver, useSkillsObserver } from "../../../hooks/useIntersectionObserver";
+import { fadeInConfig, slideUpConfig } from "../../../utils/animations";
 
 const AboutMe = () => {
   // Intersection Observer hooks for scroll-triggered animations

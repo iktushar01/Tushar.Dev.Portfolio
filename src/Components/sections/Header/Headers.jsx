@@ -8,9 +8,9 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import { containerVariants, itemVariants, imageVariants } from "../../utils/animations";
-import { photo } from "../../assets/images";
+import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
+import { containerVariants, itemVariants, imageVariants } from "../../../utils/animations";
+import { photo } from "../../../assets/images";
 
 const Header = () => {
   // Intersection Observer hooks

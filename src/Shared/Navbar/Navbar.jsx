@@ -10,7 +10,7 @@ import {
   FaGraduationCap,
   FaEnvelope
 } from "react-icons/fa";
-import Logo from "../../assets/logo.png";
+import { logo } from "../../assets/images";
 
 function debounce(func, wait) {
   let timeout;
@@ -116,7 +116,7 @@ export default function Navbar() {
             className="flex items-center"
           >
             <img
-              src={Logo}
+              src={logo}
               alt="Logo"
               className="h-8 w-auto cursor-pointer"
               onClick={() => scrollToSection("home")}
