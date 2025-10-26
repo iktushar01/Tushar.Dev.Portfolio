@@ -1,0 +1,40 @@
+/* React Modal Animation Styles */
+.modal-overlay {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.modal-overlay.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.modal-overlay.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal-content {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.modal-content.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.modal-content.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+}
+
+/* Ensure modal content is scrollable */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content > div {
+  flex: 1;
+}
+

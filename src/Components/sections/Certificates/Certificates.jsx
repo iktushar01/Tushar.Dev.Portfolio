@@ -7,6 +7,7 @@ import { textVariants, cardVariants } from "../../../utils/animations";
 import { getTechColor } from "../../../utils/techColors";
 import { certificatesData } from "../../../data/certificates";
 import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
+import Modal from "../../shared/Modal";
 
 const Certificates = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -15,12 +16,10 @@ const Certificates = () => {
 
   const openModal = (certificate) => {
     setSelectedCertificate(certificate);
-    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedCertificate(null);
-    document.body.style.overflow = "auto";
   };
 
   return (
@@ -137,118 +136,94 @@ const Certificates = () => {
         </div>
 
         {/* Certificate Details Modal */}
-        {selectedCertificate && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={closeModal}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="relative bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white z-10 bg-gray-900 rounded-full p-2"
-              >
-                <FiX size={24} />
-              </button>
-
-              <div className="p-6 md:p-8">
-                {/* Certificate Image */}
-                <div className="mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-gray-900 to-black border border-gray-700">
-                  {selectedCertificate.image ? (
-                    <img
-                      src={selectedCertificate.image}
-                      alt={selectedCertificate.title}
-                      className="w-full h-auto object-contain max-h-[500px] p-4"
-                    />
-                  ) : (
-                    <div className="h-64 flex items-center justify-center">
-                      <div className="text-center">
-                        <FiAward className="text-8xl text-red-500 mx-auto mb-4" />
-                        <p className="text-gray-400">Certificate Image</p>
-                      </div>
-                    </div>
-                  )}
+        <Modal isOpen={!!selectedCertificate} onClose={closeModal}>
+          <div className="p-6 md:p-8">
+            {/* Certificate Image */}
+            <div className="mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-gray-900 to-black border border-gray-700">
+              {selectedCertificate?.image ? (
+                <img
+                  src={selectedCertificate.image}
+                  alt={selectedCertificate.title}
+                  className="w-full h-auto object-contain max-h-[500px] p-4"
+                />
+              ) : (
+                <div className="h-64 flex items-center justify-center">
+                  <div className="text-center">
+                    <FiAward className="text-8xl text-red-500 mx-auto mb-4" />
+                    <p className="text-gray-400">Certificate Image</p>
+                  </div>
                 </div>
+              )}
+            </div>
 
-                {/* Certificate Details */}
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 text-white">
-                    {selectedCertificate.title}
-                  </h3>
-                  
-                  <div className="h-1 w-20 bg-red-500 mb-6 rounded-full"></div>
+            {/* Certificate Details */}
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-2 text-white">
+                {selectedCertificate?.title}
+              </h3>
+              
+              <div className="h-1 w-20 bg-red-500 mb-6 rounded-full"></div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
-                      <div className="flex items-center text-gray-300">
-                        <FiAward className="mr-3 text-red-500" size={24} />
-                        <div>
-                          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Issued By</p>
-                          <p className="font-semibold text-lg">{selectedCertificate.issuer}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
-                      <div className="flex items-center text-gray-300">
-                        <FiCalendar className="mr-3 text-red-500" size={24} />
-                        <div>
-                          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Completion Date</p>
-                          <p className="font-semibold text-lg">{selectedCertificate.date}</p>
-                        </div>
-                      </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                  <div className="flex items-center text-gray-300">
+                    <FiAward className="mr-3 text-red-500" size={24} />
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Issued By</p>
+                      <p className="font-semibold text-lg">{selectedCertificate?.issuer}</p>
                     </div>
                   </div>
-
-                  <div className="mb-6 bg-gray-900/50 p-5 rounded-lg border border-gray-700">
-                    <h4 className="text-lg font-semibold mb-3 text-red-500 flex items-center">
-                      <span className="mr-2">📋</span> About This Certificate
-                    </h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      {selectedCertificate.description}
-                    </p>
-                  </div>
-
-                  <div className="mb-8">
-                    <h4 className="text-lg font-semibold mb-4 text-red-500 flex items-center">
-                      <span className="mr-2">🎯</span> Skills & Technologies
-                    </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {selectedCertificate.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className={`px-4 py-2 rounded-lg text-sm font-medium ${getTechColor(skill)} shadow-md`}
-                        >
-                          {skill}
-                        </span>
-                      ))}
+                </div>
+                <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                  <div className="flex items-center text-gray-300">
+                    <FiCalendar className="mr-3 text-red-500" size={24} />
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Completion Date</p>
+                      <p className="font-semibold text-lg">{selectedCertificate?.date}</p>
                     </div>
                   </div>
-
-                  {selectedCertificate.credentialUrl && selectedCertificate.credentialUrl !== "#" && (
-                    <a
-                      href={selectedCertificate.credentialUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center px-8 py-3 bg-red-600 hover:bg-red-700 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-red-500/50"
-                    >
-                      <FiExternalLink className="mr-2" />
-                      Verify Credential
-                    </a>
-                  )}
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
+
+              <div className="mb-6 bg-gray-900/50 p-5 rounded-lg border border-gray-700">
+                <h4 className="text-lg font-semibold mb-3 text-red-500 flex items-center">
+                  <span className="mr-2">📋</span> About This Certificate
+                </h4>
+                <p className="text-gray-300 leading-relaxed">
+                  {selectedCertificate?.description}
+                </p>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold mb-4 text-red-500 flex items-center">
+                  <span className="mr-2">🎯</span> Skills & Technologies
+                </h4>
+                <div className="flex flex-wrap gap-3">
+                  {selectedCertificate?.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium ${getTechColor(skill)} shadow-md`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {selectedCertificate?.credentialUrl && selectedCertificate.credentialUrl !== "#" && (
+                <a
+                  href={selectedCertificate.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-8 py-3 bg-red-600 hover:bg-red-700 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-red-500/50"
+                >
+                  <FiExternalLink className="mr-2" />
+                  Verify Credential
+                </a>
+              )}
+            </div>
+          </div>
+        </Modal>
       </section>
     </Fade>
   );

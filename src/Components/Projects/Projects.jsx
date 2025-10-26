@@ -12,6 +12,7 @@ import { Fade } from "react-awesome-reveal";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { getTechColor } from "../../utils/techColors";
 import { projectImages } from "../../assets/images";
+import Modal from "../shared/Modal";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -134,12 +135,10 @@ const Projects = () => {
   const openModal = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
-    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = "auto";
   };
 
   const nextImage = () => {
@@ -247,140 +246,129 @@ const Projects = () => {
         </div>
 
         {/* Project Details Modal */}
-        {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70">
-            <div className="relative bg-gray-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white z-10"
-              >
-                <FiX size={24} />
-              </button>
+        <Modal isOpen={!!selectedProject} onClose={closeModal} maxWidth="max-w-6xl">
+          <div className="flex flex-col lg:flex-row">
+            {/* Left side - Image gallery */}
+            <div className="lg:w-1/2 p-4">
+              <div className="relative h-64 md:h-96 overflow-hidden rounded-lg mb-4">
+                <img
+                  src={selectedProject?.images[currentImageIndex]}
+                  alt={selectedProject?.title}
+                  className="w-full h-full object-contain bg-black"
+                />
 
-              <div className="flex flex-col lg:flex-row">
-                {/* Left side - Image gallery */}
-                <div className="lg:w-1/2 p-4">
-                  <div className="relative h-64 md:h-96 overflow-hidden rounded-lg mb-4">
+                {selectedProject && selectedProject.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
+                    >
+                      <FiChevronLeft size={24} />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
+                    >
+                      <FiChevronRight size={24} />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {selectedProject?.images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden ${
+                      currentImageIndex === index
+                        ? "ring-2 ring-red-500"
+                        : ""
+                    }`}
+                  >
                     <img
-                      src={selectedProject.images[currentImageIndex]}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-contain bg-black"
+                      src={img}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
                     />
+                  </button>
+                ))}
+              </div>
+            </div>
 
-                    {selectedProject.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
-                        >
-                          <FiChevronLeft size={24} />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition"
-                        >
-                          <FiChevronRight size={24} />
-                        </button>
-                      </>
-                    )}
-                  </div>
+            {/* Right side - Details */}
+            <div className="lg:w-1/2 p-6">
+              <h3 className="text-2xl font-bold mb-2">
+                {selectedProject?.title}
+              </h3>
+              <p className="text-gray-300 mb-6">
+                {selectedProject?.description}
+              </p>
 
-                  <div className="flex gap-2 overflow-x-auto pb-2">
-                    {selectedProject.images.map((img, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden ${
-                          currentImageIndex === index
-                            ? "ring-2 ring-red-500"
-                            : ""
-                        }`}
-                      >
-                        <img
-                          src={img}
-                          alt={`Thumbnail ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold mb-2 text-red-500">
+                  Technologies Used
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject?.technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className={`px-3 py-1 rounded-full text-sm ${getTechColor(
+                        tech
+                      )}`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-red-500">
+                    Challenges Faced
+                  </h4>
+                  <ul className="list-disc pl-5 text-gray-300 space-y-2">
+                    {selectedProject?.challenges.map((challenge, i) => (
+                      <li key={i}>{challenge}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-
-                {/* Right side - Details */}
-                <div className="lg:w-1/2 p-6">
-                  <h3 className="text-2xl font-bold mb-2">
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-gray-300 mb-6">
-                    {selectedProject.description}
-                  </p>
-
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold mb-2 text-red-500">
-                      Technologies Used
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech, i) => (
-                        <span
-                          key={i}
-                          className={`px-3 py-1 rounded-full text-sm ${getTechColor(
-                            tech
-                          )}`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <h4 className="text-lg font-semibold mb-2 text-red-500">
-                        Challenges Faced
-                      </h4>
-                      <ul className="list-disc pl-5 text-gray-300 space-y-2">
-                        {selectedProject.challenges.map((challenge, i) => (
-                          <li key={i}>{challenge}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold mb-2 text-red-500">
-                        Future Improvements
-                      </h4>
-                      <ul className="list-disc pl-5 text-gray-300 space-y-2">
-                        {selectedProject.improvements.map((improvement, i) => (
-                          <li key={i}>{improvement}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-4">
-                    <a
-                      href={selectedProject.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-300"
-                    >
-                      <FiExternalLink className="mr-2" />
-                      Live Project
-                    </a>
-                    <a
-                      href={selectedProject.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors duration-300"
-                    >
-                      <FiGithub className="mr-2" />
-                      GitHub Repository
-                    </a>
-                  </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-red-500">
+                    Future Improvements
+                  </h4>
+                  <ul className="list-disc pl-5 text-gray-300 space-y-2">
+                    {selectedProject?.improvements.map((improvement, i) => (
+                      <li key={i}>{improvement}</li>
+                    ))}
+                  </ul>
                 </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={selectedProject?.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-300"
+                >
+                  <FiExternalLink className="mr-2" />
+                  Live Project
+                </a>
+                <a
+                  href={selectedProject?.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors duration-300"
+                >
+                  <FiGithub className="mr-2" />
+                  GitHub Repository
+                </a>
               </div>
             </div>
           </div>
-        )}
+        </Modal>
       </section>
     </Fade>
   );
