@@ -30,14 +30,23 @@ const Education = () => {
               transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-center text-red-500"
             >
-              <span className="pb-2">Education Journey</span>
+              <span className="inline-block pb-2">Education Journey</span>
             </motion.h2>
           </div>
 
           {/* Timeline with Cards */}
           <div ref={cardsRef} className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-1/2 h-full w-0.5 bg-gray-700 transform -translate-x-1/2 hidden lg:block"></div>
+            {/* Vertical line - only visible after animation */}
+            <motion.div 
+              className="absolute left-1/2 w-0.5 bg-gray-700 transform -translate-x-1/2 hidden lg:block origin-bottom"
+              initial={{ scaleY: 0, height: 0 }}
+              animate={cardsInView ? { scaleY: 1, height: "100%" } : { scaleY: 0, height: 0 }}
+              transition={{ 
+                duration: 1.2, 
+                delay: 0.2,
+                ease: "easeInOut"
+              }}
+            />
 
             <div className="space-y-12 lg:space-y-16">
               {educationData.map((item, index) => (
@@ -47,8 +56,9 @@ const Education = () => {
                   initial="hidden"
                   animate={cardsInView ? "visible" : "hidden"}
                   transition={{ 
-                    delay: getResponsiveDelay(index * 0.15), 
-                    duration: getResponsiveDuration(0.6) 
+                    delay: 0.3 + (index * 0.2), 
+                    duration: 0.6,
+                    ease: "easeOut"
                   }}
                   className={`relative flex flex-col lg:flex-row ${
                     index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"

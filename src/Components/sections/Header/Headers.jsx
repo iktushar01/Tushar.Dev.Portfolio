@@ -42,23 +42,23 @@ const Header = () => {
       <motion.header
         id="home"
         initial="hidden"
-        animate={inView ? "show" : "hidden"}
-        className="bg-black text-white flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 py-12 md:py-16 relative overflow-hidden"
+        animate="show"
+        className="bg-black text-white flex flex-col md:flex-row items-center justify-center px-4 sm:px-8 py-12 md:py-20 relative overflow-hidden min-h-screen"
       >
         {/* Content container */}
-        <div className="container max-w-6xl  mx-auto flex flex-col md:flex-row-reverse items-center justify-between gap-0 lg:gap-12 xl:gap-16 z-10">
+        <div className="container max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-12 lg:gap-16 z-10">
           {/* Text content */}
           <motion.div
             ref={ref}
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            className="text-center md:text-left max-w-2xl order-2 md:order-1"
+            animate="show"
+            className="text-center md:text-left max-w-2xl order-2 md:order-1 w-full"
           >
               <motion.h1
                 variants={textVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate="visible"
                 transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
                 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white"
               >
@@ -68,7 +68,7 @@ const Header = () => {
               <motion.div 
                 variants={textVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate="visible"
                 transition={{ delay: getResponsiveDelay(0.2), duration: getResponsiveDuration(0.6) }}
                 className="mb-6"
               >
@@ -83,9 +83,9 @@ const Header = () => {
               <motion.p
                 variants={textVariants}
                 initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+                animate="visible"
                 transition={{ delay: getResponsiveDelay(0.4), duration: getResponsiveDuration(0.6) }}
-                className="text-gray-200 text-base sm:text-lg mb-8"
+                className="text-gray-200 text-base sm:text-lg mb-8 leading-relaxed"
               >
                 I specialize in building full-stack web applications using
                 MongoDB, Express.js, React, and Node.js. Focused on creating
@@ -94,23 +94,23 @@ const Header = () => {
 
             <motion.div
               variants={containerVariants}
+              initial="hidden"
+              animate="show"
               className="flex flex-col items-center md:items-start gap-4"
             >
                 {/* Social Icons Row */}
                 <motion.div 
                   variants={itemVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                  transition={{ delay: getResponsiveDelay(0.6), duration: getResponsiveDuration(0.6) }}
                   className="flex gap-4 sm:gap-5"
                 >
                   <motion.a
-                    variants={iconVariants}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6, duration: 0.3 }}
                     whileHover={{ 
                       y: -3, 
-                      scale: getResponsiveScale(1.2),
-                      rotate: 360,
-                      transition: { duration: 0.3 }
+                      scale: 1.15,
+                      transition: { duration: 0.2 }
                     }}
                     whileTap={{ scale: 0.9 }}
                     target="_blank"
@@ -121,12 +121,13 @@ const Header = () => {
                     <FaGithub />
                   </motion.a>
                   <motion.a
-                    variants={iconVariants}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.7, duration: 0.3 }}
                     whileHover={{ 
                       y: -3, 
-                      scale: getResponsiveScale(1.2),
-                      rotate: 360,
-                      transition: { duration: 0.3 }
+                      scale: 1.15,
+                      transition: { duration: 0.2 }
                     }}
                     whileTap={{ scale: 0.9 }}
                     target="_blank"
@@ -137,12 +138,13 @@ const Header = () => {
                     <FaLinkedin />
                   </motion.a>
                   <motion.a
-                    variants={iconVariants}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8, duration: 0.3 }}
                     whileHover={{ 
                       y: -3, 
-                      scale: getResponsiveScale(1.2),
-                      rotate: 360,
-                      transition: { duration: 0.3 }
+                      scale: 1.15,
+                      transition: { duration: 0.2 }
                     }}
                     whileTap={{ scale: 0.9 }}
                     target="_blank"
@@ -157,35 +159,36 @@ const Header = () => {
               {/* Action Buttons */}
               <motion.div
                 variants={itemVariants}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                transition={{ delay: getResponsiveDelay(0.8), duration: getResponsiveDuration(0.6) }}
-                className="flex gap-3 sm:gap-4 flex-wrap justify-center"
+                className="flex gap-3 sm:gap-4 flex-wrap justify-center md:justify-start"
               >
                 <motion.button
-                  variants={buttonVariants}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.4 }}
                   whileHover={{ 
-                    scale: getResponsiveScale(1.05),
+                    y: -2,
                     boxShadow: '0 10px 25px rgba(239, 68, 68, 0.3)',
                     transition: { duration: 0.2 }
                   }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleDownload}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                  className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
                 >
                   <span>Download CV</span>
                   <FaFileDownload />
                 </motion.button>
                 <motion.button
-                  variants={buttonVariants}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.4 }}
                   whileHover={{ 
-                    scale: getResponsiveScale(1.05),
+                    y: -2,
                     boxShadow: '0 10px 25px rgba(107, 114, 128, 0.3)',
                     transition: { duration: 0.2 }
                   }}
                   whileTap={{ scale: 0.95 }}
                   onClick={previewCV}
-                  className="flex items-center gap-2 px-4 py-2 bg-transparent border border-gray-600 text-gray-300 rounded-sm hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                  className="flex items-center gap-2 px-6 py-3 bg-transparent border border-gray-600 text-gray-300 rounded-sm hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
                 >
                   <span>Preview CV</span>
                   <FaEye />
@@ -197,18 +200,18 @@ const Header = () => {
           {/* Image container */}
           <motion.div
             initial="hidden"
-            animate={inView ? "show" : "hidden"}
+            animate="show"
             variants={imageVariants}
-            className="mb-8 md:mb-0 order-1 md:order-2 z-10"
+            className="mb-8 md:mb-0 order-1 md:order-2 z-10 w-full md:w-auto flex justify-center"
           >
-            <div className="overflow-hidden bg-black flex items-center justify-center">
+            <div className="relative overflow-hidden rounded-lg flex items-center justify-center">
               <motion.img
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
+                initial={{ scale: 1.1, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 src={photo}
                 alt="Ibrahim Khalil Tushar"
-                className="w-full md:w-[65%] h-96 md:h-full object-cover"
+                className="w-full max-w-md md:max-w-lg h-auto object-cover"
                 loading="eager"
               />
             </div>

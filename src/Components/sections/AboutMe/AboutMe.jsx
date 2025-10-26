@@ -29,7 +29,7 @@ const AboutMe = () => {
               transition={{ delay: getResponsiveDelay(0.1), duration: getResponsiveDuration(0.6) }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-center text-red-500"
             >
-              <span className="pb-2">About Me</span>
+              <span className="inline-block pb-2">About Me</span>
             </motion.h2>
           </div>
 

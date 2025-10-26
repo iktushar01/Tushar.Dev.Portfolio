@@ -89,11 +89,11 @@ const Skills = () => {
       <div className="container mx-auto max-w-6xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-transparent bg-clip-text bg-red-500">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-red-500">
             Technical Skills
           </h2>
         </motion.div>
