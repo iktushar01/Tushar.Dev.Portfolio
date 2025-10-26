@@ -8,7 +8,8 @@ import {
   FaBars,
   FaCode,
   FaGraduationCap,
-  FaEnvelope
+  FaEnvelope,
+  FaAward
 } from "react-icons/fa";
 import { logo } from "../../assets/images";
 
@@ -32,6 +33,7 @@ export default function Navbar() {
     { icon: <FaCode size={16} />, label: "Skills", id: "skills" },
     { icon: <FaGraduationCap size={16} />, label: "Education", id: "education" },
     { icon: <FaBoxOpen size={16} />, label: "Projects", id: "projects" },
+    { icon: <FaAward size={16} />, label: "Certificates", id: "certificates" },
   ];
 
   const contactItem = { icon: <FaEnvelope size={16} />, label: "Contact", id: "contact" };
