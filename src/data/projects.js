@@ -3,6 +3,49 @@ import { projectImages } from '../assets/images';
 export const projectsData = [
   {
     id: 1,
+    title: "Store-Xen POS Management System",
+    images: [
+      projectImages.projectTwo.one,
+      projectImages.projectTwo.two,
+      projectImages.projectTwo.three,
+      projectImages.projectTwo.four,
+      projectImages.projectTwo.five,
+    ],
+    description: "A comprehensive, full-stack Point of Sale (POS) Store Management System with advanced inventory tracking, supplier management, procurement workflows, and warehouse operations. Features include purchase order management, goods receive notes (GRN), supplier payments, real-time inventory updates, batch & expiry tracking, and complete audit trails.",
+    technologies: [
+      "React",
+      "React Router DOM",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "TanStack Table",
+      "Axios",
+      "SweetAlert2",
+      "Context API",
+    ],
+    liveLink: "https://store-xen.vercel.app/",
+    githubLink: "https://github.com/iktushar01/Store-Xen.git",
+    challenges: [
+      "Implementing secure authentication system with session management and protected routes",
+      "Building complex procurement workflows with multi-receipt GRN support and approval systems",
+      "Managing real-time inventory updates with automatic stock synchronization from GRN receipts",
+      "Creating comprehensive payment tracking system with multiple payment methods and status management",
+      "Implementing batch and expiry date tracking for perishable goods with automated alerts",
+    ],
+    improvements: [
+      "Add Sales POS Terminal for in-store transactions",
+      "Implement Customer Management and Invoice Generation system",
+      "Add Barcode Scanning and Receipt Printing capabilities",
+      "Create Dashboard Analytics with data visualization charts",
+      "Implement Multi-user & Role-based Access Control",
+      "Add Email/SMS Notifications for low stock and payment reminders",
+      "Enable Stock Transfer Between Warehouses",
+      "Add comprehensive Reports & Analytics module",
+    ],
+  },
+  {
+    id: 2,
     title: "Easy Home - Real Estate Platform",
     images: [
       projectImages.projectThree.one,
@@ -43,7 +86,7 @@ export const projectsData = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "Marathon Management System",
     images: [
       projectImages.projectOne.one,
@@ -72,39 +115,6 @@ export const projectsData = [
       "Add admin analytics dashboard for event insights",
       "Integrate payment system for paid registrations",
       "Introduce push notifications and email confirmations",
-    ],
-  },
-  {
-    id: 3,
-    title: "Recipe Book",
-    images: [
-      projectImages.projectTwo.four,
-      projectImages.projectTwo.one,
-      projectImages.projectTwo.two,
-      projectImages.projectTwo.three,
-      projectImages.projectTwo.five,
-    ],
-    description: "A feature-rich recipe sharing platform where users can create, explore, and manage personalized recipes. Includes filtering, top recipes, and protected user routes.",
-    technologies: [
-      "React.js",
-      "Firebase Auth",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "TailwindCSS",
-      "DaisyUI",
-    ],
-    liveLink: "https://recipebook99.netlify.app/",
-    githubLink: "https://github.com/iktushar01/Recipe-Book.git",
-    challenges: [
-      "Building role-based access control for private routes",
-      "Creating dynamic filtering by cuisine type",
-      "Managing user-generated content securely with MongoDB",
-    ],
-    improvements: [
-      "Add recipe rating and comment system",
-      "Enable image upload for recipes",
-      "Implement advanced search with tags and keywords",
     ],
   }
 ];

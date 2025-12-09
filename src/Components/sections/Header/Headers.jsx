@@ -12,6 +12,7 @@ import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver"
 import { containerVariants, itemVariants, imageVariants, textVariants, buttonVariants, iconVariants } from "../../../utils/animations";
 import { useResponsiveAnimation } from "../../../hooks/useResponsiveAnimation";
 import { photo } from "../../../assets/images";
+import resumePdf from "../../../assets/Tushar Resume.pdf";
 
 const Header = () => {
   // Intersection Observer hooks
@@ -22,7 +23,7 @@ const Header = () => {
   const handleDownload = () => {
     // Create a temporary anchor element
     const link = document.createElement("a");
-    link.href = "/src/assets/Tushar Resume(2).pdf";
+    link.href = resumePdf;
     link.download = "Ibrahim_Khalil_Tushar_Resume.pdf"; 
     document.body.appendChild(link);
     link.click();
@@ -32,7 +33,7 @@ const Header = () => {
   // Google Drive link for preview
   const previewCV = () => {
     window.open(
-      "https://drive.google.com/file/d/1bRuVbnABTWPNAQPVsg7pQSnKd9-5YbKy/view",
+      "https://drive.google.com/file/d/1QAB9OXcOx5v_meDa3bpQt18tH8pD0D-o/view",
       "_blank"
     );
   };
