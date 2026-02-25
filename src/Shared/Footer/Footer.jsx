@@ -93,7 +93,7 @@ const Footer = () => {
         {/* Bottom Banner */}
         <div className="mt-12 text-center">
             <p className="text-[10px] font-mono text-gray-700 uppercase tracking-[0.8em]">
-                Built_with_React_and_Framer_Motion
+                Built_with_Love
             </p>
         </div>
       </div>
