@@ -5,7 +5,7 @@ import ContactUs from '../../components/sections/ContactUs/ContactUs';
 import Education from '../../components/sections/Education/Education';
 import Projects from '../../components/sections/Projects/Projects';
 import Certificates from '../../components/sections/Certificates/Certificates';
-import Skills from '../../Components/Skills/Skills';
+import Skills from '../../components/sections/Skills/Skills';
 
 const Home = () => {
     return (
