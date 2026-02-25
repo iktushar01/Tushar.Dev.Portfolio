@@ -196,15 +196,6 @@ export default function Navbar() {
                 ))}
               </motion.div>
 
-              {/* Footer of Sidebar */}
-              <div className="mt-auto pt-10 border-t border-white/5">
-                <p className="text-gray-500 text-sm mb-4">Socials</p>
-                <div className="flex gap-6 text-white/40">
-                  {['LinkedIn', 'Github', 'Twitter'].map(link => (
-                    <a key={link} href="#" className="hover:text-red-500 transition-colors text-sm uppercase tracking-widest">{link}</a>
-                  ))}
-                </div>
-              </div>
             </motion.div>
           </>
         )}
