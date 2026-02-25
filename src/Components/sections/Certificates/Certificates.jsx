@@ -6,23 +6,23 @@ import { FiX, FiExternalLink, FiAward, FiCalendar, FiZap } from "react-icons/fi"
 import { certificatesData } from "../../../data/certificates";
 
 const TECH_COLORS = {
-  React:              "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30",
-  JavaScript:         "bg-yellow-500/10 text-yellow-400 border border-yellow-500/30",
-  "ES6+":             "bg-yellow-400/10 text-yellow-300 border border-yellow-400/30",
-  HTML:               "bg-orange-500/10 text-orange-400 border border-orange-500/30",
-  CSS:                "bg-sky-500/10 text-sky-400 border border-sky-500/30",
-  MongoDB:            "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30",
-  "Node.js":          "bg-green-500/10 text-green-400 border border-green-500/30",
-  "Express.js":       "bg-gray-500/10 text-gray-300 border border-gray-500/30",
-  Git:                "bg-red-500/10 text-red-400 border border-red-500/30",
-  "UI/UX":            "bg-pink-500/10 text-pink-400 border border-pink-500/30",
-  Algorithms:         "bg-purple-500/10 text-purple-400 border border-purple-500/30",
-  "Data Structures":  "bg-indigo-500/10 text-indigo-400 border border-indigo-500/30",
-  OOP:                "bg-blue-500/10 text-blue-400 border border-blue-500/30",
-  Flexbox:            "bg-teal-500/10 text-teal-400 border border-teal-500/30",
-  "CSS Grid":         "bg-teal-400/10 text-teal-300 border border-teal-400/30",
-  Accessibility:      "bg-violet-500/10 text-violet-400 border border-violet-500/30",
-  default:            "bg-red-500/10 text-red-400 border border-red-500/30",
+  React: "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30",
+  JavaScript: "bg-yellow-500/10 text-yellow-400 border border-yellow-500/30",
+  "ES6+": "bg-yellow-400/10 text-yellow-300 border border-yellow-400/30",
+  HTML: "bg-orange-500/10 text-orange-400 border border-orange-500/30",
+  CSS: "bg-sky-500/10 text-sky-400 border border-sky-500/30",
+  MongoDB: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30",
+  "Node.js": "bg-green-500/10 text-green-400 border border-green-500/30",
+  "Express.js": "bg-gray-500/10 text-gray-300 border border-gray-500/30",
+  Git: "bg-red-500/10 text-red-400 border border-red-500/30",
+  "UI/UX": "bg-pink-500/10 text-pink-400 border border-pink-500/30",
+  Algorithms: "bg-purple-500/10 text-purple-400 border border-purple-500/30",
+  "Data Structures": "bg-indigo-500/10 text-indigo-400 border border-indigo-500/30",
+  OOP: "bg-blue-500/10 text-blue-400 border border-blue-500/30",
+  Flexbox: "bg-teal-500/10 text-teal-400 border border-teal-500/30",
+  "CSS Grid": "bg-teal-400/10 text-teal-300 border border-teal-400/30",
+  Accessibility: "bg-violet-500/10 text-violet-400 border border-violet-500/30",
+  default: "bg-red-500/10 text-red-400 border border-red-500/30",
 };
 const getTechColor = (t) => TECH_COLORS[t] || TECH_COLORS.default;
 
@@ -176,7 +176,7 @@ const CertModal = ({ cert, onClose }) => {
     <AnimatePresence>
       {cert && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -197,7 +197,7 @@ const CertModal = ({ cert, onClose }) => {
 
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-red-600/30 hover:border-red-500/50 transition-all duration-200"
+              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-red-500 hover:bg-red-600/30 hover:border-red-500/50 transition-all duration-200"
             >
               <FiX size={16} />
             </button>

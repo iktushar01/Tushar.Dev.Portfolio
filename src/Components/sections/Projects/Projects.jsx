@@ -313,7 +313,7 @@ const ProjectModal = ({ project, onClose }) => {
     <AnimatePresence>
       {project && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -338,7 +338,7 @@ const ProjectModal = ({ project, onClose }) => {
             {/* Close */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-red-600/30 hover:border-red-500/50 transition-all duration-200"
+              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-red-500 hover:bg-red-600/30 hover:border-red-500/50 transition-all duration-200"
             >
               <FiX size={16} />
             </button>
