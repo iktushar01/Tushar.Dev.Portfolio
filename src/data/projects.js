@@ -4,6 +4,7 @@ export const projectsData = [
   {
     id: 1,
     title: "Store-Xen POS Management System",
+    tag: "Full Stack",
     images: [
       projectImages.projectTwo.one,
       projectImages.projectTwo.two,
@@ -47,6 +48,7 @@ export const projectsData = [
   {
     id: 2,
     title: "Easy Home - Real Estate Platform",
+    tag: "MERN Stack",
     images: [
       projectImages.projectThree.one,
       projectImages.projectThree.two,
@@ -88,6 +90,7 @@ export const projectsData = [
   {
     id: 3,
     title: "Marathon Management System",
+    tag: "Full Stack",
     images: [
       projectImages.projectOne.one,
       projectImages.projectOne.two,
