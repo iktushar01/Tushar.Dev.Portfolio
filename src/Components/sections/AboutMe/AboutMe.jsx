@@ -215,7 +215,7 @@ const AboutMe = () => {
     { emoji: "🎮", text: "Gamer — Valorant & PUBG" },
     { emoji: "🌍", text: "Dhaka, Bangladesh" },
     { emoji: "🎓", text: "CSE Undergrad" },
-    { emoji: "💡", text: "MERN Stack Dev" },
+    { emoji: "💡", text: "FULL Stack Dev" },
     { emoji: "🏆", text: "GPA 5.00 in HSC" },
     { emoji: "🤝", text: "Open to Collabs" },
   ];

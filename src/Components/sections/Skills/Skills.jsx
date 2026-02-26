@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import {
-  FaReact, FaNodeJs, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt, FaFire,
+  FaReact, FaNodeJs, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt, FaFire, FaWordpress, FaPython, FaWindows
 } from "react-icons/fa";
 import {
-  SiTailwindcss, SiExpress, SiMongodb, SiJavascript,
-  SiPostman, SiVercel, SiJsonwebtokens, SiVite, SiNpm,
+  SiTailwindcss, SiExpress, SiMongodb, SiJavascript, SiPostman, SiVercel, 
+  SiJsonwebtokens, SiVite, SiNpm, SiTypescript, SiNextdotjs, SiPostgresql, 
+  SiPrisma, SiFigma, SiAdobephotoshop, SiNotion
 } from "react-icons/si";
+import { TbBrandFramerMotion } from "react-icons/tb"; // For the Framer/Motion icon
 import { FiZap, FiCode, FiDatabase, FiTool } from "react-icons/fi";
 
 // ─── Skill Data ───────────────────────────────────────────────────────────────
@@ -19,11 +21,12 @@ const skillsData = [
     description: "Building responsive, interactive user interfaces with modern frameworks and styling tools.",
     skills: [
       { name: "React.js", icon: <FaReact />, color: "#61DAFB", level: 90 },
+      { name: "Next.js", icon: <SiNextdotjs />, color: "#FFFFFF", level: 85 },
+      { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6", level: 80 },
       { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E", level: 85 },
       { name: "HTML5", icon: <FaHtml5 />, color: "#E34F26", level: 90 },
       { name: "CSS3", icon: <FaCss3Alt />, color: "#1572B6", level: 85 },
       { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38BDF8", level: 85 },
-      { name: "Vite", icon: <SiVite />, color: "#A78BFA", level: 80 },
     ],
   },
   {
@@ -31,37 +34,40 @@ const skillsData = [
     category: "Backend",
     icon: <FiZap />,
     color: "#4ade80",
-    description: "Developing robust server-side logic, RESTful APIs, and authentication systems.",
+    description: "Developing robust server-side logic, RESTful APIs, and integrated systems.",
     skills: [
       { name: "Node.js", icon: <FaNodeJs />, color: "#68A063", level: 85 },
       { name: "Express.js", icon: <SiExpress />, color: "#CCCCCC", level: 80 },
-      { name: "REST API", icon: <span className="font-black text-[10px]">REST</span>, color: "#FB923C", level: 85 },
+      { name: "Python", icon: <FaPython />, color: "#3776AB", level: 75 },
+      { name: "WordPress", icon: <FaWordpress />, color: "#21759B", level: 70 },
       { name: "JWT Auth", icon: <SiJsonwebtokens />, color: "#FB923C", level: 75 },
     ],
   },
   {
     id: 3,
-    category: "Database",
+    category: "Database & ORM",
     icon: <FiDatabase />,
     color: "#34d399",
-    description: "Designing and managing databases with a focus on scalability and data integrity.",
+    description: "Designing and managing relational and NoSQL databases with type-safe ORMs.",
     skills: [
+      { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1", level: 80 },
       { name: "MongoDB", icon: <SiMongodb />, color: "#4DB33D", level: 85 },
+      { name: "Prisma", icon: <SiPrisma />, color: "#2D3748", level: 85 },
       { name: "Firebase", icon: <FaFire />, color: "#FFA000", level: 80 },
     ],
   },
   {
     id: 4,
-    category: "Tools & DevOps",
+    category: "Design & Tools",
     icon: <FiTool />,
     color: "#f97316",
-    description: "Proficient with industry-standard tools for version control, deployment, and development workflows.",
+    description: "Proficient with industry-standard tools for design, version control, and productivity.",
     skills: [
+      { name: "Figma", icon: <SiFigma />, color: "#F24E1E", level: 85 },
+      { name: "Photoshop", icon: <SiAdobephotoshop />, color: "#31A8FF", level: 70 },
       { name: "Git", icon: <FaGitAlt />, color: "#F05032", level: 85 },
-      { name: "GitHub", icon: <FaGithub />, color: "#E6EDF3", level: 90 },
-      { name: "Postman", icon: <SiPostman />, color: "#FF6C37", level: 70 },
-      { name: "Vercel", icon: <SiVercel />, color: "#FFFFFF", level: 80 },
-      { name: "npm", icon: <SiNpm />, color: "#CB3837", level: 85 },
+      { name: "Postman", icon: <SiPostman />, color: "#FF6C37", level: 85 },
+      { name: "Notion", icon: <SiNotion />, color: "#FFFFFF", level: 80 },
     ],
   },
 ];
@@ -69,24 +75,29 @@ const skillsData = [
 // ─── Tech colour map ──────────────────────────────────────────────────────────
 const TECH_COLORS = {
   "React.js": "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30",
+  "Next.js": "bg-white/10 text-white border border-white/30",
+  TypeScript: "bg-blue-600/10 text-blue-400 border border-blue-600/30",
   JavaScript: "bg-yellow-500/10 text-yellow-400 border border-yellow-500/30",
   HTML5: "bg-orange-500/10 text-orange-400 border border-orange-500/30",
   CSS3: "bg-sky-500/10 text-sky-400 border border-sky-500/30",
   "Tailwind CSS": "bg-teal-500/10 text-teal-400 border border-teal-500/30",
-  Vite: "bg-purple-500/10 text-purple-400 border border-purple-500/30",
   "Node.js": "bg-green-500/10 text-green-400 border border-green-500/30",
   "Express.js": "bg-gray-500/10 text-gray-300 border border-gray-500/30",
-  "REST API": "bg-orange-400/10 text-orange-300 border border-orange-400/30",
-  "JWT Auth": "bg-orange-500/10 text-orange-400 border border-orange-500/30",
+  Python: "bg-blue-500/10 text-blue-300 border border-blue-500/30",
+  WordPress: "bg-sky-600/10 text-sky-400 border border-sky-600/30",
+  PostgreSQL: "bg-indigo-500/10 text-indigo-400 border border-indigo-500/30",
   MongoDB: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30",
+  Prisma: "bg-slate-700/10 text-slate-300 border border-slate-700/30",
   Firebase: "bg-yellow-600/10 text-yellow-500 border border-yellow-600/30",
+  Figma: "bg-purple-500/10 text-purple-400 border border-purple-500/30",
+  Photoshop: "bg-blue-800/10 text-blue-400 border border-blue-800/30",
   Git: "bg-red-500/10 text-red-400 border border-red-500/30",
-  GitHub: "bg-gray-400/10 text-gray-300 border border-gray-400/30",
+  "VS Code": "bg-blue-500/10 text-blue-400 border border-blue-500/30",
+  Notion: "bg-white/5 text-white/80 border border-white/20",
   Postman: "bg-orange-600/10 text-orange-400 border border-orange-600/30",
-  Vercel: "bg-white/5 text-white/60 border border-white/15",
-  npm: "bg-red-600/10 text-red-400 border border-red-600/30",
-  default: "bg-red-500/10 text-red-400 border border-red-500/30",
+  default: "bg-gray-500/10 text-gray-400 border border-gray-500/30",
 };
+
 const getTechColor = (t) => TECH_COLORS[t] || TECH_COLORS.default;
 
 // ─── Glitch Text ──────────────────────────────────────────────────────────────

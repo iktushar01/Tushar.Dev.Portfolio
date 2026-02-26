@@ -113,7 +113,7 @@ const Header = () => {
                {/* Decorative background text */}
               <div className="absolute -right-4 -bottom-4 text-7xl font-black text-white/[0.02] pointer-events-none">CODE</div>
               
-              <h3 className="text-2xl font-bold text-gray-100 mb-3">MERN STACK DEVELOPER</h3>
+              <h3 className="text-2xl font-bold text-gray-100 mb-3">FULL STACK DEVELOPER</h3>
               <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
                 Specialized in building high-performance decentralized architectures and scalable web systems. 
                 Focusing on <span className="text-white border-b border-red-600">React Ecosystems</span> and <span className="text-white border-b border-red-600">Node Logic</span>.

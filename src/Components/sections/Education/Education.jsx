@@ -105,7 +105,7 @@ const EducationRow = ({ item, index }) => {
           <img
             src={item.logo}
             alt={`${item.institution} logo`}
-            className="w-4/5 h-4/5 object-contain"
+            className="w-4/5 h-4/5 rounded-full object-contain"
           />
           {item.current && (
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/8 to-transparent pointer-events-none" />
