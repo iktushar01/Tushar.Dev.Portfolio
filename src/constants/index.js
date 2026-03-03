@@ -8,7 +8,7 @@ export const APP_CONFIG = {
   github: "https://github.com/iktushar01",
   linkedin: "https://www.linkedin.com/in/iktushar01/",
   facebook: "https://www.facebook.com/ibrahim.khalil.tushar.2024",
-  resumeUrl: "https://drive.google.com/file/d/1QAB9OXcOx5v_meDa3bpQt18tH8pD0D-o/view",
+  resumeUrl: "https://drive.google.com/file/d/1Ju_WWEwLEy-14gIPQPpNy3Doys7bDMRI/view?usp=sharing",
   resumeDownload: "/src/assets/Tushar Resume.pdf"
 };
 

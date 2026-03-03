@@ -1,7 +1,7 @@
 import React from "react";
-import { 
-  FaGithub, FaLinkedin, FaFacebook, FaFileDownload, FaEye, 
-  FaCode, FaTerminal, FaDatabase, FaReact, FaNodeJs, FaHtml5, FaCss3Alt 
+import {
+  FaGithub, FaLinkedin, FaFacebook, FaFileDownload, FaEye,
+  FaCode, FaTerminal, FaDatabase, FaReact, FaNodeJs, FaHtml5, FaCss3Alt
 } from "react-icons/fa";
 import { SiMongodb, SiTailwindcss, SiJavascript } from "react-icons/si";
 import { motion } from "framer-motion";
@@ -30,7 +30,7 @@ const Header = () => {
   });
 
   const previewCV = () => {
-    window.open("https://drive.google.com/file/d/1QAB9OXcOx5v_meDa3bpQt18tH8pD0D-o/view", "_blank");
+    window.open("https://drive.google.com/file/d/1Ju_WWEwLEy-14gIPQPpNy3Doys7bDMRI/view?usp=sharing", "_blank");
   };
 
   return (
@@ -57,7 +57,7 @@ const Header = () => {
       </div>
 
       <div className="container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-20 z-20">
-        
+
         {/* --- LEFT SIDE: IMAGE WITH HUD FRAME --- */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -72,7 +72,7 @@ const Header = () => {
           <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-red-600 z-30" />
 
           {/* HUD Scanning Line */}
-          <motion.div 
+          <motion.div
             animate={{ top: ["0%", "100%", "0%"] }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             className="absolute left-0 right-0 h-[2px] bg-red-600/50 shadow-[0_0_15px_rgba(220,38,38,0.8)] z-30 pointer-events-none"
@@ -87,8 +87,8 @@ const Header = () => {
             />
             {/* HUD Data Text Overlay */}
             <div className="absolute bottom-4 left-4 font-mono text-[10px] text-red-500/70 z-30 uppercase tracking-tighter leading-none">
-              System.Status: Active<br/>
-              Loc: 23.8103° N, 90.4125° E<br/>
+              System.Status: Active<br />
+              Loc: 23.8103° N, 90.4125° E<br />
               Dev_Mode: Enabled
             </div>
           </div>
@@ -110,12 +110,12 @@ const Header = () => {
             </h1>
 
             <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl mb-8 relative overflow-hidden group">
-               {/* Decorative background text */}
+              {/* Decorative background text */}
               <div className="absolute -right-4 -bottom-4 text-7xl font-black text-white/[0.02] pointer-events-none">CODE</div>
-              
+
               <h3 className="text-2xl font-bold text-gray-100 mb-3">FULL STACK DEVELOPER</h3>
               <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-                Specialized in building high-performance decentralized architectures and scalable web systems. 
+                Specialized in building high-performance decentralized architectures and scalable web systems.
                 Focusing on <span className="text-white border-b border-red-600">React Ecosystems</span> and <span className="text-white border-b border-red-600">Node Logic</span>.
               </p>
             </div>
@@ -137,15 +137,15 @@ const Header = () => {
               >
                 VIEW CV <FaEye />
               </motion.button>
-              
 
-              <button 
+
+              <button
                 onClick={() => window.open('https://github.com/iktushar01')}
                 className="p-4 rounded-full border border-white/10 hover:bg-white/5 transition-all text-xl"
               >
                 <FaGithub />
               </button>
-              
+
             </div>
           </Fade>
         </div>
