@@ -64,7 +64,7 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "Marathon Management System",
+      title: "Acadex",
       images: [
         projectImages.projectOne.one,
         projectImages.projectOne.two,
