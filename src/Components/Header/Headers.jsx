@@ -11,7 +11,7 @@ import { Fade } from "react-awesome-reveal";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { containerVariants, itemVariants, imageVariants } from "../../utils/animations";
 import { photo } from "../../assets/images";
-import resumePdf from "../../assets/Tushar Resume.pdf";
+import resumePdf from "../../assets/Tushar_Resume.pdf";
 
 const Header = () => {
   // Intersection Observer hooks
@@ -31,7 +31,7 @@ const Header = () => {
   // Google Drive link for preview
   const previewCV = () => {
     window.open(
-      "https://drive.google.com/file/d/1Ju_WWEwLEy-14gIPQPpNy3Doys7bDMRI/view?usp=sharing",
+      "https://drive.google.com/file/d/19QNqpDiwARV8oJkT91VXGL0szbtFQZqT/view?usp=sharing",
       "_blank"
     );
   };

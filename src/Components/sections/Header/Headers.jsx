@@ -7,7 +7,7 @@ import { SiMongodb, SiTailwindcss, SiJavascript } from "react-icons/si";
 import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
 import { photo } from "../../../assets/images";
-import resumePdf from "../../../assets/Tushar Resume.pdf";
+import resumePdf from "../../../assets/Tushar_Resume.pdf";
 
 const Header = () => {
   const handleDownload = () => {

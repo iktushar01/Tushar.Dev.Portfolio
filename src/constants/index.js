@@ -9,7 +9,7 @@ export const APP_CONFIG = {
   linkedin: "https://www.linkedin.com/in/iktushar01/",
   facebook: "https://www.facebook.com/ibrahim.khalil.tushar.2024",
   resumeUrl: "https://drive.google.com/file/d/1Ju_WWEwLEy-14gIPQPpNy3Doys7bDMRI/view?usp=sharing",
-  resumeDownload: "/src/assets/Tushar Resume.pdf"
+  resumeDownload: "/src/assets/Tushar_Resume.pdf"
 };
 
 export const ANIMATION_DELAYS = {
