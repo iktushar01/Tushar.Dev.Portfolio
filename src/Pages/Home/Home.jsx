@@ -1,11 +1,11 @@
 import React from 'react';
-import Headers from '../../components/sections/Header/Headers';
-import AboutMe from '../../components/sections/AboutMe/AboutMe';
-import ContactUs from '../../components/sections/ContactUs/ContactUs';
-import Education from '../../components/sections/Education/Education';
-import Projects from '../../components/sections/Projects/Projects';
-import Certificates from '../../components/sections/Certificates/Certificates';
-import Skills from '../../components/sections/Skills/Skills';
+import AboutMe from '../../Components/sections/AboutMe/AboutMe';
+import ContactUs from '../../Components/sections/ContactUs/ContactUs';
+import Education from '../../Components/sections/Education/Education';
+import Projects from '../../Components/sections/Projects/Projects';
+import Certificates from '../../Components/sections/Certificates/Certificates';
+import Skills from '../../Components/sections/Skills/Skills';
+import Headers from '../../Components/sections/Header/Headers';
 
 const Home = () => {
     return (
