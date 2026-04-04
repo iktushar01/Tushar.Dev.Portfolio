@@ -13,7 +13,7 @@ const Header = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = resumePdf;
-    link.download = "Ibrahim_Khalil_Tushar_Resume.pdf";
+    link.download = "Tushar_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -30,7 +30,7 @@ const Header = () => {
   });
 
   const previewCV = () => {
-    window.open("https://drive.google.com/file/d/1Ju_WWEwLEy-14gIPQPpNy3Doys7bDMRI/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1GNnn7i54WYWNjWlTPZHLxRqmqxLLV5tA/view?usp=sharing", "_blank");
   };
 
   return (
